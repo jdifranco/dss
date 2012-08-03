@@ -1,6 +1,7 @@
 package com.dridco.dss.chess.model;
 
-import java.util.Map;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 
@@ -9,14 +10,23 @@ import java.util.Map;
  */
 public class Board {
 	
-	private Map<PiecePosition, Piece> squares;
+	private static final int BOARD_ROWS = 8;
+	private static final int BOARD_COLS = 8;
 	
-	public Board(Map<PiecePosition, Piece> squares) {
-		this.squares = squares;
+	private List<Square> squares;
+	
+	public Board() {
+		this.squares = Collections.emptyList();
+		initChessBoard();
 	}
 	
-	public Piece getSquareContentAtPosition(PiecePosition position) {
-		return squares.get(position);
+	private void initChessBoard() {
+		
+		for (int i = 0; i < BOARD_COLS; i++) {
+			for (int j = 0; j < BOARD_ROWS; j++) {
+				squares.add(new Square(new SquarePosition(i, j)));
+			}
+		}
 	}
 	
 }

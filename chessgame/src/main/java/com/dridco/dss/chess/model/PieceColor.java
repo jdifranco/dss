@@ -6,5 +6,5 @@ package com.dridco.dss.chess.model;
  *
  */
 public enum PieceColor {
-	BLACK_PIECE, WHITE_PIECE;
+	BLACK, WHITE;
 }

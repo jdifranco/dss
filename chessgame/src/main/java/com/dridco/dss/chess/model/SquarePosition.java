@@ -5,12 +5,12 @@ package com.dridco.dss.chess.model;
  * @author jdifranco
  * 
  */
-public final class PiecePosition {
+public final class SquarePosition {
 
 	private Integer row;
 	private Integer col;
 
-	public PiecePosition(int row, int col) {
+	public SquarePosition(int row, int col) {
 		super();
 		this.row = row;
 		this.col = col;
@@ -26,8 +26,8 @@ public final class PiecePosition {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (PiecePosition.class.isInstance(obj)) {
-			PiecePosition pieceToCompare = (PiecePosition) obj;
+		if (SquarePosition.class.isInstance(obj)) {
+			SquarePosition pieceToCompare = (SquarePosition) obj;
 			return this.getCol().equals(pieceToCompare.getCol())
 					&& this.getRow().equals(pieceToCompare.getRow());
 		}

@@ -7,12 +7,12 @@ package com.dridco.dss.chess.model;
  */
 public class Pawn extends Piece {
 
-	public Pawn(PieceColor color, PiecePosition position) {
-		super(color, position);
+	public Pawn(PieceColor color) {
+		super(color);
 	}
 
 	@Override
-	public boolean move(PiecePosition position) {
+	public boolean move(Square position) {
 		// TODO Auto-generated method stub
 		return false;
 	}
