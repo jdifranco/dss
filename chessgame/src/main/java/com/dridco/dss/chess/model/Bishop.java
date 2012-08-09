@@ -7,12 +7,12 @@ package com.dridco.dss.chess.model;
  */
 public class Bishop extends Piece {
 
-	public Bishop(PieceColor color, PiecePosition position) {
-		super(color, position);
+	public Bishop(PieceColor color) {
+		super(color);
 	}
 
 	@Override
-	public boolean move(PiecePosition position) {
+	public boolean move(Square position) {
 		// TODO Auto-generated method stub
 		return false;
 	}
