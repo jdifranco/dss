@@ -13,7 +13,7 @@ import com.dridco.dss.chess.model.Square;
  */
 public class SquareTest {
 	
-	private Piece testPawn = Pieces.createPawn(PieceColor.WHITE_PIECE);
+	private Piece testPawn = Pieces.createPawn(PieceColor.WHITE);
 	private Square emptySquare1 = new Square(Coordinate.at(2, 2));
 	private Square emptySquare2 = new Square(Coordinate.at(2, 2));
 	private Square completedSquare1 = new Square(Coordinate.at(3, 3), testPawn);

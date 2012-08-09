@@ -36,13 +36,13 @@ public class BoardTest {
 	
 	@Test(expected=RuntimeException.class)
 	public void testPutPiece_onInvalidSquare_ShouldThrowException() {
-		board.putPiece(Coordinate.at(9, 9), Pieces.createPawn(PieceColor.WHITE_PIECE));
+		board.putPiece(Coordinate.at(9, 9), Pieces.createPawn(PieceColor.WHITE));
 	}
 	
 	@Test
 	public void testPutPiece_onValidSquare_ShouldAllowToGetThisPieceAfter() {
 		Coordinate destCord = Coordinate.at(1, 1);
-		board.putPiece(destCord, Pieces.createPawn(PieceColor.WHITE_PIECE));
+		board.putPiece(destCord, Pieces.createPawn(PieceColor.WHITE));
 		Assert.assertTrue(board.getSquareAt(destCord).isOccupied());		
 	}
 	
