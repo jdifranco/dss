@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 import com.dridco.dss.chess.util.NumberUtil;
 
+
 /**
  * 
  * @author jdifranco
@@ -15,7 +16,7 @@ public class Board {
 	public static int BOARD_MAX_WIDTH = 8;
 	public static int BOARD_MAX_HEIGHT = 8;
 	private Map<Coordinate, Square> squares;
-	
+
 	public Board() {
 		this.squares = new TreeMap<Coordinate, Square>();
 		for(int i = 1; i <= BOARD_MAX_WIDTH; i++) {
@@ -25,7 +26,7 @@ public class Board {
 			}
 		}
 	}
-	
+
 	public Map<Coordinate, Square> getSquares() {
 		return squares;
 	}

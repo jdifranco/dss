@@ -2,3 +2,4 @@ target
 /chessgame/*.classpath
 /chessgame/.settings
 /chessgame/.project
+.DS_Store

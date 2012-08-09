@@ -59,4 +59,5 @@ public final class Square {
 		}
 		return result.toString();
 	}
+	
 }
