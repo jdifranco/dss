@@ -2,6 +2,7 @@ package com.dridco.dss.chess.model;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.Square;
@@ -13,18 +14,19 @@ import com.dridco.dss.chess.model.Square;
  */
 public class SquareTest {
 	
-	private Piece testPawn = Pieces.createPawn(PieceColor.WHITE);
-	private Square emptySquare1 = new Square(Coordinate.at(2, 2));
-	private Square emptySquare2 = new Square(Coordinate.at(2, 2));
-	private Square completedSquare1 = new Square(Coordinate.at(3, 3), testPawn);
-			
-	@Test
-	public void testEquals() {
-		Assert.assertFalse("Square is not null", emptySquare1.equals(null));
-		Assert.assertFalse("Square1 is different from Square2", emptySquare1.equals(completedSquare1));
-		Assert.assertTrue("Square1 is the same having the same position", emptySquare1.equals(emptySquare2));
-	}
+	private Piece testPawn = Pieces.newPawn(PieceColor.WHITE);
+	private Square emptySquare1;
+	private Square emptySquare2;
+	private Square completedSquare1;
 	
+	@Before
+	public void setUp() {
+		emptySquare1 = new Square();
+		emptySquare2 = new Square();
+		completedSquare1 = new Square();
+		completedSquare1.putPiece(testPawn);
+	}
+			
 	@Test
 	public void testIsOccupied_shouldReturnFalse_whenSquareHasNothingOnIt() {
 		Assert.assertFalse(emptySquare1.isOccupied());

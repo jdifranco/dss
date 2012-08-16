@@ -7,34 +7,10 @@ package com.dridco.dss.chess.model;
  */
 public final class Square {
 
-	private Coordinate coordinate;
 	private Piece piece;
-
-	public Square(Coordinate cord) {
-		this(cord, null);
-	}
 	
-	public Square(Coordinate cord, Piece piece) {
-		super();
-		this.coordinate = cord;
-		this.piece = piece;	
-	}
-
-	public Integer getRow() {
-		return coordinate.getX();
-	}
-	
-	public Integer getCol() {
-		return coordinate.getY();
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (Square.class.isInstance(obj)) {
-			Square pieceToCompare = (Square) obj;
-			return this.coordinate.equals(pieceToCompare.coordinate);
-		}
-		return false;
+	public Square() {
+		super();	
 	}
 
 	public boolean isOccupied() {
@@ -43,11 +19,19 @@ public final class Square {
 	
 	public void putPiece(Piece piece) {
 		if(this.isOccupied()) {
-			throw new RuntimeException(String.format("The square: %s : %s is already occupied", this.getRow(), this.getCol()));
+			throw new RuntimeException(String.format("The square is already occupied"));
 		}
 		this.piece = piece;
 	}
 
+	public void movePiece(Square destSquare) {
+		if(!this.isOccupied()) {
+			throw new RuntimeException(String.format("Cannot move piece, the square is empty."));
+		}
+		destSquare.piece = this.piece;
+		this.piece = null;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuffer result = new StringBuffer();
@@ -59,5 +43,5 @@ public final class Square {
 		}
 		return result.toString();
 	}
-	
+
 }

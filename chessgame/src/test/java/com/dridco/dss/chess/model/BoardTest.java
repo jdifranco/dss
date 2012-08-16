@@ -36,17 +36,32 @@ public class BoardTest {
 	
 	@Test(expected=RuntimeException.class)
 	public void testPutPiece_onInvalidSquare_ShouldThrowException() {
-		board.putPiece(Coordinate.at(9, 9), Pieces.createPawn(PieceColor.WHITE));
+		board.putPiece(Coordinate.at(9, 9), Pieces.newPawn(PieceColor.WHITE));
 	}
 	
 	@Test
 	public void testPutPiece_onValidSquare_ShouldAllowToGetThisPieceAfter() {
 		Coordinate destCord = Coordinate.at(1, 1);
-		board.putPiece(destCord, Pieces.createPawn(PieceColor.WHITE));
+		board.putPiece(destCord, Pieces.newPawn(PieceColor.WHITE));
 		Assert.assertTrue(board.getSquareAt(destCord).isOccupied());		
 	}
 	
+	@Test(expected=RuntimeException.class)
+	public void testMovePiece_withNoPieceInTheSrcCordOrEmptySquare_ShouldThrowException () {
+		board.movePiece(Coordinate.at(1, 1), Coordinate.at(2, 1));
+	}
+	
 	@Test
+	public void testMovePiece_withOccupiedSrcQuare_ShouldMovePieceToDestSquare () {
+		Coordinate srcCord = Coordinate.at(2, 1);
+		Coordinate destCord = Coordinate.at(3, 1);
+		board.putPiece(srcCord, Pieces.newPawn(PieceColor.WHITE));
+		board.movePiece(srcCord, destCord);
+		Assert.assertFalse(board.getSquareAt(srcCord).isOccupied());
+		Assert.assertTrue(board.getSquareAt(destCord).isOccupied());
+	}
+
+	@Test 
 	public void testToString() {
 		Assert.assertFalse(board.toString().isEmpty());
 	}

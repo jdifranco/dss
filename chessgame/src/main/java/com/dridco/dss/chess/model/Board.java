@@ -3,7 +3,7 @@ package com.dridco.dss.chess.model;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.dridco.dss.chess.util.NumberUtil;
+import com.dridco.dss.chess.util.BoardUtils;
 
 
 /**
@@ -22,7 +22,7 @@ public class Board {
 		for(int i = 1; i <= BOARD_MAX_WIDTH; i++) {
 			for(int j = 1; j <= BOARD_MAX_WIDTH; j++) {
 				Coordinate cord = Coordinate.at(i, j);
-				squares.put(cord, new Square(cord));
+				squares.put(cord, new Square());
 			}
 		}
 	}
@@ -43,12 +43,21 @@ public class Board {
 		square.putPiece(piece);
 	}
 	
+	public void movePiece(Coordinate srcCord, Coordinate destCord) {
+		Square srcSquare = squares.get(srcCord);
+		Square destSquare = squares.get(destCord);
+		if(srcSquare == null || destSquare == null) {
+			throw new RuntimeException("There are no square at that locations");
+		}
+		srcSquare.movePiece(destSquare);
+	}
+	
 	@Override
 	public String toString() {
 		StringBuffer stringBoard = new StringBuffer();
 		stringBoard.append("  ");
 		for(int j = 1; j <= BOARD_MAX_WIDTH; j++) {
-			stringBoard.append("   " + NumberUtil.convertIntegerToChar(j) + "  ");
+			stringBoard.append("   " + BoardUtils.convertIntegerToChessColumnName(j) + "  ");
 		}
 		stringBoard.append("\n");
 		for(int i = BOARD_MAX_HEIGHT; i > 0; i--) {
@@ -72,7 +81,7 @@ public class Board {
 		}
 		stringBoard.append("!\n  ");
 		for(int j = 1; j <= BOARD_MAX_WIDTH; j++) {
-			stringBoard.append("   " + NumberUtil.convertIntegerToChar(j) + "  ");
+			stringBoard.append("   " + BoardUtils.convertIntegerToChessColumnName(j) + "  ");
 		}
 		return stringBoard.toString();
 	}
