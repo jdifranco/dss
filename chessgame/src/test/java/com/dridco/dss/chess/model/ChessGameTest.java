@@ -1,5 +1,7 @@
 package com.dridco.dss.chess.model;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +21,7 @@ public class ChessGameTest {
 	
 	@Test
 	public void testInitBoard_boardHasbeenCreatedSuccessFully() {
-		System.out.println(chessGame.getBoard().toString());
+		Assert.assertFalse(chessGame.getBoard().isEmpty());
 	}
 	
 }
