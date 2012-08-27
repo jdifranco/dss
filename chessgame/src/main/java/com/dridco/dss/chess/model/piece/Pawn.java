@@ -1,6 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.square.SquareContext;
+import com.dridco.dss.chess.model.Coordinates;
 
 /**
  * 
@@ -14,9 +14,9 @@ public class Pawn extends ChessPiece {
 	}
 
 	@Override
-	public boolean move(SquareContext position) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean canMoveTo(Coordinates srcCord,
+			Coordinates destCord) {
+		return true;
 	}
 	
 }

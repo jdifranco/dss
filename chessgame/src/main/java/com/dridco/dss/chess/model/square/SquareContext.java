@@ -1,5 +1,6 @@
 package com.dridco.dss.chess.model.square;
 
+import com.dridco.dss.chess.model.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
 
 /**
@@ -8,12 +9,14 @@ import com.dridco.dss.chess.model.piece.ChessPiece;
  * 
  */
 public class SquareContext {
-
+	
+	protected Coordinates coordinates;
 	protected ChessPiece piece;
 	protected Squares square;
 
-	public SquareContext(Squares state) {
+	public SquareContext(Coordinates cords, Squares state) {
 		super();
+		this.coordinates = cords;
 		this.square = state;
 	}
 	

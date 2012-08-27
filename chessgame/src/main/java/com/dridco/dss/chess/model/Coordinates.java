@@ -37,4 +37,11 @@ public enum Coordinates {
 		return col + ":" + row;
 	}
 	
+	public char getCol() {
+		return col;
+	}
+	
+	public Integer getRow() {
+		return row;
+	}
 }

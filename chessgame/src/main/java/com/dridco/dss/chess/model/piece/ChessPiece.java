@@ -1,6 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.square.SquareContext;
+import com.dridco.dss.chess.model.Coordinates;
 
 /**
  * 
@@ -24,6 +24,6 @@ public abstract class ChessPiece {
 		return this.captured;
 	}
 	
-	public abstract boolean move(SquareContext position);
+	public abstract boolean canMoveTo(Coordinates srcSquare, Coordinates destSquare);
 	
 }

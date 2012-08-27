@@ -32,6 +32,7 @@ public final class ChessBoard {
 	}
 	
 	public void movePiece(Coordinates srcCord, Coordinates destCord) {
+		// TODO checkear el estado del tablero Jacke antes y despues de la jugada, etc.
 		SquareContext srcSquare = squares.get(srcCord);
 		SquareContext destSquare = squares.get(destCord);
 		srcSquare.movePiece(destSquare);

@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dridco.dss.chess.model.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
 import com.dridco.dss.chess.model.piece.ChessPieceColors;
 import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
@@ -22,8 +23,8 @@ public class SquareTest {
 	
 	@Before
 	public void setUp() {
-		emptySquare = SquaresFactory.newEmptySquare();
-		occupiedSquare = SquaresFactory.newOccupiedSquare(testPawn);
+		emptySquare = SquaresFactory.newEmptySquare(Coordinates.H1);
+		occupiedSquare = SquaresFactory.newOccupiedSquare(Coordinates.H2, testPawn);
 	}
 			
 	@Test
@@ -38,7 +39,7 @@ public class SquareTest {
 	
 	@Test(expected=RuntimeException.class)
 	public void testMovePieceFrom_EmptySquare_shouldThrowException() {
-		emptySquare.movePiece(SquaresFactory.newEmptySquare());
+		emptySquare.movePiece(SquaresFactory.newEmptySquare(Coordinates.H7));
 	}
 	
 	@Test
