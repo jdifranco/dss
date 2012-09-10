@@ -23,8 +23,8 @@ public class SquareTest {
 	
 	@Before
 	public void setUp() {
-		emptySquare = SquaresFactory.newEmptySquareContainer(Coordinates.H1);
-		occupiedSquare = SquaresFactory.newOccupiedSquareContainer(Coordinates.H2, testPawn);
+		emptySquare = SquaresFactory.newEmptySquareContainer(Coordinates.H2);
+		occupiedSquare = SquaresFactory.newOccupiedSquareContainer(Coordinates.H1, testPawn);
 	}
 			
 	@Test

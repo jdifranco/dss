@@ -24,6 +24,15 @@ public enum Coordinates {
 		this.row = y;
 	}
 	
+	public static Coordinates at(String cord) {
+		if(cord.length() > 2) {
+			throw new RuntimeException("Invalid Cord");
+		}
+		char col = cord.charAt(0);
+		Integer row = Integer.parseInt(cord.substring(1));
+		return Coordinates.at(col, row);
+	}
+	
 	public static Coordinates at(char x, Integer y) {
 		String strCord = String.valueOf(x) + y.toString();
 		Coordinates cord = Coordinates.valueOf(strCord.toUpperCase());

@@ -8,18 +8,21 @@ import com.dridco.dss.chess.model.Coordinates;
  *
  */
 public class Pawn extends ChessPiece {
-	
-	private boolean firstMove;
-	
+		
 	public Pawn(ChessPieceColors color) {
 		super(color);
-		this.firstMove = false;
 	}
 
 	@Override
 	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {
-		return true;
+		if(!this.isMovedHorizontally(srcCord, destCord) && this.isMovedVertically(srcCord, destCord)) {
+			boolean isMovingBackWards = destCord.getRow() * this.getColor().getMovePattern() < 
+				srcCord.getRow() * this.getColor().getMovePattern();
+			int movesDelta = Math.abs(destCord.getRow() - srcCord.getRow());
+			return !isMovingBackWards && (movesDelta == 1 || (!this.hasBeenMoved && movesDelta <= 2)); 
+		}
+		return false;
 	}
 	
 }

@@ -13,9 +13,10 @@ public abstract class ChessPiece {
 	
 	private ChessPieceColors color;
 	private boolean captured;
-	private boolean hasBeenMoved;
+	protected boolean hasBeenMoved;
 	
 	public ChessPiece(ChessPieceColors color) {
+		super();
 		this.color = color;
 	}
 	
