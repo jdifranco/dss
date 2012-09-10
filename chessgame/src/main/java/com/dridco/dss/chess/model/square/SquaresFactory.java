@@ -16,11 +16,11 @@ public class SquaresFactory {
 	}
 	
 	public static SquareContext newEmptySquare(Coordinates cords) {
-		return new SquareContext(cords, Squares.EMPTY);
+		return new SquareContext(cords, new EmptySquare());
 	}
 
 	public static SquareContext newOccupiedSquare(Coordinates cords, ChessPiece piece) {
-		SquareContext ctx = new SquareContext(cords, Squares.OCCUPIED);
+		SquareContext ctx = new SquareContext(cords, new OccupiedSquare());
 		ctx.piece = piece;
 		return ctx;
 	}

@@ -16,7 +16,7 @@ public class Knight extends ChessPiece {
 	}
 
 	@Override
-	public boolean canMoveTo(Coordinates srcCord,
+	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {
 		int colsDelta = Math.abs(destCord.getCol() - srcCord.getCol());
 		int rowsDelta = Math.abs(destCord.getRow() - srcCord.getRow());

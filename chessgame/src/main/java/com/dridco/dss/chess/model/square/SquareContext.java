@@ -12,9 +12,9 @@ public class SquareContext {
 	
 	protected Coordinates coordinates;
 	protected ChessPiece piece;
-	protected Squares square;
+	protected Square square;
 
-	public SquareContext(Coordinates cords, Squares state) {
+	public SquareContext(Coordinates cords, Square state) {
 		super();
 		this.coordinates = cords;
 		this.square = state;

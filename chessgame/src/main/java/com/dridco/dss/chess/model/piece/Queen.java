@@ -14,9 +14,11 @@ public class Queen extends ChessPiece {
 	}
 
 	@Override
-	public boolean canMoveTo(Coordinates srcCord,
-			Coordinates destCord) {
-		return true;
+	public boolean isMoveValid(Coordinates srcCord,
+			Coordinates destCord) {		
+		return this.isMovedHorizontally(srcCord, destCord) || 
+				this.isMovedVertically(srcCord, destCord) || 
+				this.isMovedDiagonally(srcCord, destCord);
 	}
 	
 }

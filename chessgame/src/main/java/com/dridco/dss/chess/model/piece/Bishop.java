@@ -14,9 +14,9 @@ public class Bishop extends ChessPiece {
 	}
 
 	@Override
-	public boolean canMoveTo(Coordinates srcCord,
-			Coordinates destCord) {
-		return true;
+	public boolean isMoveValid(Coordinates srcCord,
+			Coordinates destCord) {	
+		return this.isMovedDiagonally(srcCord, destCord);
 	}
 	
 }

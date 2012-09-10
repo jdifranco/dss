@@ -8,13 +8,16 @@ import com.dridco.dss.chess.model.Coordinates;
  *
  */
 public class Pawn extends ChessPiece {
-
+	
+	private boolean firstMove;
+	
 	public Pawn(ChessPieceColors color) {
 		super(color);
+		this.firstMove = false;
 	}
 
 	@Override
-	public boolean canMoveTo(Coordinates srcCord,
+	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {
 		return true;
 	}

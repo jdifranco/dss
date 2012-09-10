@@ -14,9 +14,10 @@ public class Rook extends ChessPiece {
 	}
 
 	@Override
-	public boolean canMoveTo(Coordinates srcCord,
+	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {
-		return true;
+		return this.isMovedHorizontally(srcCord, destCord) || 
+				this.isMovedVertically(srcCord, destCord);
 	}
 	
 }
