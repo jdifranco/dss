@@ -1,6 +1,8 @@
 package com.dridco.dss.chess.model.piece;
 
 import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.square.SquareContainer;
+import com.dridco.dss.chess.model.square.SquaresFactory;
 
 /**
  * 
@@ -11,6 +13,7 @@ public abstract class ChessPiece {
 	
 	private ChessPieceColors color;
 	private boolean captured;
+	private boolean hasBeenMoved;
 	
 	public ChessPiece(ChessPieceColors color) {
 		this.color = color;
@@ -40,5 +43,14 @@ public abstract class ChessPiece {
 	}
 	
 	public abstract boolean isMoveValid(Coordinates srcCord, Coordinates destCord);
+
+	public void moveTo(SquareContainer srcSqCont, SquareContainer destSqCont) {
+		destSqCont.updateSquare(SquaresFactory.newOccupiedSquare(destSqCont.getCoordinates(), this));
+		srcSqCont.updateSquare(SquaresFactory.newEmptySquare(srcSqCont.getCoordinates()));
+		
+		if(!this.hasBeenMoved) {
+			this.hasBeenMoved = true;
+		}
+	}
 	
 }

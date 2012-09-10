@@ -3,7 +3,7 @@ package com.dridco.dss.chess.model.board;
 import java.util.SortedMap;
 
 import com.dridco.dss.chess.model.Coordinates;
-import com.dridco.dss.chess.model.square.SquareContext;
+import com.dridco.dss.chess.model.square.SquareContainer;
 
 /**
  * 
@@ -16,9 +16,9 @@ public final class ChessBoard {
 	public static char LAST_COL  = 'H';
 	public static int SIZE = 8;
 	
-	private SortedMap<Coordinates, SquareContext> squares;
+	private SortedMap<Coordinates, SquareContainer> squares;
 
-	protected ChessBoard(SortedMap<Coordinates, SquareContext> squares) {
+	protected ChessBoard(SortedMap<Coordinates, SquareContainer> squares) {
 		super();
 		this.squares = squares;
 	}
@@ -27,14 +27,14 @@ public final class ChessBoard {
 		return this.squares.isEmpty();
 	}
 	
-	public SquareContext getSquareAt(Coordinates cord) {
+	public SquareContainer getSquareAt(Coordinates cord) {
 		return squares.get(cord);
 	}
 	
 	public void movePiece(Coordinates srcCord, Coordinates destCord) {
 		// TODO checkear el estado del tablero Jacke antes y despues de la jugada, etc.
-		SquareContext srcSquare = squares.get(srcCord);
-		SquareContext destSquare = squares.get(destCord);
+		SquareContainer srcSquare = squares.get(srcCord);
+		SquareContainer destSquare = squares.get(destCord);
 		srcSquare.movePiece(destSquare);
 	}
 	
@@ -55,7 +55,7 @@ public final class ChessBoard {
 			stringBoard.append( row + " ");
 			for(char colName = ChessBoard.FIRST_COL; colName <= ChessBoard.LAST_COL; colName++) {
 				Coordinates cord = Coordinates.at(colName, row);
-				SquareContext square = squares.get(cord);
+				SquareContainer square = squares.get(cord);
 				String piece = square.toString();
 				stringBoard.append("!  " + piece + " ");
 			}

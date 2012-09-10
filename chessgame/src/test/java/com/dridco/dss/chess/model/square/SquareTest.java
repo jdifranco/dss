@@ -18,13 +18,13 @@ import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
 public class SquareTest {
 	
 	private ChessPiece testPawn = ChessPiecesFactory.newPawn(ChessPieceColors.WHITE);
-	private SquareContext emptySquare;
-	private SquareContext occupiedSquare;
+	private SquareContainer emptySquare;
+	private SquareContainer occupiedSquare;
 	
 	@Before
 	public void setUp() {
-		emptySquare = SquaresFactory.newEmptySquare(Coordinates.H1);
-		occupiedSquare = SquaresFactory.newOccupiedSquare(Coordinates.H2, testPawn);
+		emptySquare = SquaresFactory.newEmptySquareContainer(Coordinates.H1);
+		occupiedSquare = SquaresFactory.newOccupiedSquareContainer(Coordinates.H2, testPawn);
 	}
 			
 	@Test
@@ -39,7 +39,7 @@ public class SquareTest {
 	
 	@Test(expected=RuntimeException.class)
 	public void testMovePieceFrom_EmptySquare_shouldThrowException() {
-		emptySquare.movePiece(SquaresFactory.newEmptySquare(Coordinates.H7));
+		emptySquare.movePiece(SquaresFactory.newEmptySquareContainer(Coordinates.H7));
 	}
 	
 	@Test

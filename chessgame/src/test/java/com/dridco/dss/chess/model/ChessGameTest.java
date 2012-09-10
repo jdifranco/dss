@@ -24,9 +24,4 @@ public class ChessGameTest {
 		Assert.assertFalse(chessGame.getBoard().isEmpty());
 	}
 	
-	@Test
-	public void showBoard() {
-		System.out.println(chessGame.getBoard().toString());
-	}
-	
 }

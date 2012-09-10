@@ -1,6 +1,7 @@
 package com.dridco.dss.chess.model.square;
 
-
+import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.piece.ChessPiece;
 
 /**
  * 
@@ -9,10 +10,18 @@ package com.dridco.dss.chess.model.square;
  */
 public abstract class Square {
 	
+	protected Coordinates coordinates;
+	protected ChessPiece piece;
+	
+	public Square(Coordinates cords) {
+		super();
+		this.coordinates = cords;
+	}
+		
 	public abstract boolean isOccupied();
 	
-	public abstract void movePiece(SquareContext srcSquare, SquareContext destSquare);
+	public abstract void movePiece(SquareContainer srcSquare, SquareContainer destSquare);
 	
-	public abstract String toString(SquareContext square);	
+	public abstract String toString();	
 	
 }

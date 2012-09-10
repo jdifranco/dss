@@ -3,7 +3,6 @@ package com.dridco.dss.chess.model.square;
 import com.dridco.dss.chess.model.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
 
-
 /**
  * 
  * @author jdifranco
@@ -15,14 +14,19 @@ public class SquaresFactory {
 		// Dont want an instance of the factory.
 	}
 	
-	public static SquareContext newEmptySquare(Coordinates cords) {
-		return new SquareContext(cords, new EmptySquare());
-	}
-
-	public static SquareContext newOccupiedSquare(Coordinates cords, ChessPiece piece) {
-		SquareContext ctx = new SquareContext(cords, new OccupiedSquare());
-		ctx.piece = piece;
-		return ctx;
+	public static Square newEmptySquare(Coordinates cords) {
+		return new EmptySquare(cords);
 	}
 	
+	public static Square newOccupiedSquare(Coordinates cords, ChessPiece piece) {
+		return new OccupiedSquare(cords, piece);
+	}
+	
+	public static SquareContainer newEmptySquareContainer(Coordinates cords) {
+		return new SquareContainer(newEmptySquare(cords));
+	}
+	
+	public static SquareContainer newOccupiedSquareContainer(Coordinates cords, ChessPiece piece) {
+		return new SquareContainer(newOccupiedSquare(cords, piece));
+	}
 }
