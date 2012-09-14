@@ -28,7 +28,7 @@ public class OccupiedSquare extends Square {
 	public void movePiece(SquareContainer srcSquare, SquareContainer destSquare) {
 		// TODO (Por ahora se esta asumiendo que esta vacio el dest Square y que
 		// el movimiento siempre es valido
-		// 1 - Checkear si es un movimiento valido para esa pieza.
+		// 1 - Checkear si es un movimiento valido para esa pieza. (Listo)
 		// 2 - Checkear si esta ocupado el dest square:
 		// a) En ese caso de ser pieza del mismo color, el movimiento es
 		// invalido.
