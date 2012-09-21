@@ -3,10 +3,12 @@ package com.dridco.dss.chess.model.board;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.dridco.dss.chess.model.Coordinates;
-import com.dridco.dss.chess.model.piece.ChessPieceColors;
+import static com.dridco.dss.chess.model.coordinate.Coordinates.*;
+import static com.dridco.dss.chess.model.piece.ChessPieceColors.*;
+
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
-import com.dridco.dss.chess.model.square.SquareContainer;
+import com.dridco.dss.chess.model.square.Square;
 import com.dridco.dss.chess.model.square.SquaresFactory;
 
 /**
@@ -24,34 +26,34 @@ public class ChessBoardFactory {
 	}
 	
 	public static ChessBoard newBoard() {
-		SortedMap<Coordinates, SquareContainer> squares = new TreeMap<Coordinates, SquareContainer>();
+		SortedMap<Coordinates, Square> squares = new TreeMap<Coordinates, Square>();
 		
-		squares.put(Coordinates.A1, SquaresFactory.newOccupiedSquareContainer(Coordinates.A1, ChessPiecesFactory.newRook(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.B1, SquaresFactory.newOccupiedSquareContainer(Coordinates.B1, ChessPiecesFactory.newKnight(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.C1, SquaresFactory.newOccupiedSquareContainer(Coordinates.C1, ChessPiecesFactory.newBishop(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.D1, SquaresFactory.newOccupiedSquareContainer(Coordinates.D1, ChessPiecesFactory.newQueen(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.E1, SquaresFactory.newOccupiedSquareContainer(Coordinates.E1, ChessPiecesFactory.newKing(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.F1, SquaresFactory.newOccupiedSquareContainer(Coordinates.F1, ChessPiecesFactory.newBishop(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.G1, SquaresFactory.newOccupiedSquareContainer(Coordinates.G1, ChessPiecesFactory.newKnight(ChessPieceColors.WHITE)));
-		squares.put(Coordinates.H1, SquaresFactory.newOccupiedSquareContainer(Coordinates.H1, ChessPiecesFactory.newRook(ChessPieceColors.WHITE)));
+		squares.put(A1, SquaresFactory.newOccupiedSquareContainer(A1, ChessPiecesFactory.newRook(WHITE)));
+		squares.put(B1, SquaresFactory.newOccupiedSquareContainer(B1, ChessPiecesFactory.newKnight(WHITE)));
+		squares.put(C1, SquaresFactory.newOccupiedSquareContainer(C1, ChessPiecesFactory.newBishop(WHITE)));
+		squares.put(D1, SquaresFactory.newOccupiedSquareContainer(D1, ChessPiecesFactory.newQueen(WHITE)));
+		squares.put(E1, SquaresFactory.newOccupiedSquareContainer(E1, ChessPiecesFactory.newKing(WHITE)));
+		squares.put(F1, SquaresFactory.newOccupiedSquareContainer(F1, ChessPiecesFactory.newBishop(WHITE)));
+		squares.put(G1, SquaresFactory.newOccupiedSquareContainer(G1, ChessPiecesFactory.newKnight(WHITE)));
+		squares.put(H1, SquaresFactory.newOccupiedSquareContainer(H1, ChessPiecesFactory.newRook(WHITE)));
 		
-		squares.put(Coordinates.A8, SquaresFactory.newOccupiedSquareContainer(Coordinates.A8, ChessPiecesFactory.newRook(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.B8, SquaresFactory.newOccupiedSquareContainer(Coordinates.B8, ChessPiecesFactory.newKnight(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.C8, SquaresFactory.newOccupiedSquareContainer(Coordinates.C8, ChessPiecesFactory.newBishop(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.D8, SquaresFactory.newOccupiedSquareContainer(Coordinates.D8, ChessPiecesFactory.newQueen(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.E8, SquaresFactory.newOccupiedSquareContainer(Coordinates.E8, ChessPiecesFactory.newKing(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.F8, SquaresFactory.newOccupiedSquareContainer(Coordinates.F8, ChessPiecesFactory.newBishop(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.G8, SquaresFactory.newOccupiedSquareContainer(Coordinates.G8, ChessPiecesFactory.newKnight(ChessPieceColors.BLACK)));
-		squares.put(Coordinates.H8, SquaresFactory.newOccupiedSquareContainer(Coordinates.H8, ChessPiecesFactory.newRook(ChessPieceColors.BLACK)));
+		squares.put(A8, SquaresFactory.newOccupiedSquareContainer(A8, ChessPiecesFactory.newRook(BLACK)));
+		squares.put(B8, SquaresFactory.newOccupiedSquareContainer(B8, ChessPiecesFactory.newKnight(BLACK)));
+		squares.put(C8, SquaresFactory.newOccupiedSquareContainer(C8, ChessPiecesFactory.newBishop(BLACK)));
+		squares.put(D8, SquaresFactory.newOccupiedSquareContainer(D8, ChessPiecesFactory.newQueen(BLACK)));
+		squares.put(E8, SquaresFactory.newOccupiedSquareContainer(E8, ChessPiecesFactory.newKing(BLACK)));
+		squares.put(F8, SquaresFactory.newOccupiedSquareContainer(F8, ChessPiecesFactory.newBishop(BLACK)));
+		squares.put(G8, SquaresFactory.newOccupiedSquareContainer(G8, ChessPiecesFactory.newKnight(BLACK)));
+		squares.put(H8, SquaresFactory.newOccupiedSquareContainer(H8, ChessPiecesFactory.newRook(BLACK)));
 		
-		for(char colName = ChessBoard.FIRST_COL; colName <= ChessBoard.LAST_COL; colName++) {
-			squares.put(Coordinates.at(colName, 2), SquaresFactory.newOccupiedSquareContainer(Coordinates.at(colName, 2), ChessPiecesFactory.newPawn(ChessPieceColors.WHITE)));
-			squares.put(Coordinates.at(colName, 7), SquaresFactory.newOccupiedSquareContainer(Coordinates.at(colName, 7), ChessPiecesFactory.newPawn(ChessPieceColors.BLACK)));
+		for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
+			squares.put(at(colName, 2), SquaresFactory.newOccupiedSquareContainer(at(colName, 2), ChessPiecesFactory.newPawn(WHITE)));
+			squares.put(at(colName, 7), SquaresFactory.newOccupiedSquareContainer(at(colName, 7), ChessPiecesFactory.newPawn(BLACK)));
 		}
 		
-		for(char colName = ChessBoard.FIRST_COL; colName <= ChessBoard.LAST_COL; colName++) {
+		for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
 			for(int row = DEFAULT_FIRST_EMPTY_ROW; row <= DEFAULT_LAST_EMPTY_ROW; row++) {
-				Coordinates cord = Coordinates.at(colName, row);
+				Coordinates cord = at(colName, row);
 				squares.put(cord, SquaresFactory.newEmptySquareContainer(cord));
 			}
 		}

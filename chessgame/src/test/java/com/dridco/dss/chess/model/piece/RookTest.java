@@ -5,14 +5,14 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 
 /**
  * 
  * @author jdifranco
  *
  */
-public class RookTest extends ChessPieceTest {
+public class RookTest {
 	
 	private ChessPiece whiteRookPiece;
 	private ChessPiece blackRookPiece;

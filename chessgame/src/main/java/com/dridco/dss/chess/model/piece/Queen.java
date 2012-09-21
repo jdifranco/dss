@@ -1,6 +1,7 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.util.piece.ChessPieceUtil;
 
 /**
  * 
@@ -16,9 +17,9 @@ public class Queen extends ChessPiece {
 	@Override
 	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {		
-		return this.isMovedHorizontally(srcCord, destCord) || 
-				this.isMovedVertically(srcCord, destCord) || 
-				this.isMovedDiagonally(srcCord, destCord);
+		return ChessPieceUtil.isMovedHorizontally(srcCord, destCord) || 
+				ChessPieceUtil.isMovedVertically(srcCord, destCord) || 
+				ChessPieceUtil.isMovedDiagonally(srcCord, destCord);
 	}
 	
 }

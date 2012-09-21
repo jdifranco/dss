@@ -1,27 +1,46 @@
 package com.dridco.dss.chess.model.square;
 
-import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
+
 
 /**
  * 
  * @author jdifranco
  * 
  */
-public abstract class Square {
-	
-	protected Coordinates coordinates;
-	protected ChessPiece piece;
-	
-	public Square(Coordinates cords) {
+public class Square {
+
+	protected SquareState state;
+
+	public Square(SquareState square) {
 		super();
-		this.coordinates = cords;
+		this.state = square;
 	}
-		
-	public abstract boolean isOccupied();
 	
-	public abstract void movePiece(SquareContainer srcSquare, SquareContainer destSquare);
+	public Coordinates getCoordinates() {
+		return this.state.coordinates;
+	}
 	
-	public abstract String toString();	
+	public boolean isOccupied() {
+		return this.state.isOccupied();
+	}
 	
+	public boolean hasSameColorPiece(ChessPiece piece) {
+		return this.state.hasSameColorPiece(piece);
+	}
+	
+	public void updateSquareState(SquareState state) {
+		this.state = state;
+	}
+	
+	public void movePiece(Square destSquare){
+		state.movePiece(this, destSquare);
+	}
+	
+	@Override
+	public String toString() {
+		return state.toString();
+	}
+
 }

@@ -1,6 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 
 /**
  * 

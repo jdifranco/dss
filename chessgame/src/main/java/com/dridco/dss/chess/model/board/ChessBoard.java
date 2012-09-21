@@ -2,8 +2,8 @@ package com.dridco.dss.chess.model.board;
 
 import java.util.SortedMap;
 
-import com.dridco.dss.chess.model.Coordinates;
-import com.dridco.dss.chess.model.square.SquareContainer;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.square.Square;
 
 /**
  * 
@@ -13,28 +13,23 @@ import com.dridco.dss.chess.model.square.SquareContainer;
 public final class ChessBoard {
 	
 	public static char FIRST_COL = 'A';
-	public static char LAST_COL  = 'H';
 	public static int SIZE = 8;
 	
-	private SortedMap<Coordinates, SquareContainer> squares;
+	private SortedMap<Coordinates, Square> squares;
 
-	protected ChessBoard(SortedMap<Coordinates, SquareContainer> squares) {
+	protected ChessBoard(SortedMap<Coordinates, Square> squares) {
 		super();
 		this.squares = squares;
 	}
-
-	public boolean isEmpty() {
-		return this.squares.isEmpty();
-	}
 	
-	public SquareContainer getSquareAt(Coordinates cord) {
+	public Square getSquareAt(Coordinates cord) {
 		return squares.get(cord);
 	}
 	
 	public void movePiece(Coordinates srcCord, Coordinates destCord) {
 		// TODO checkear el estado del tablero Jacke antes y despues de la jugada, etc.
-		SquareContainer srcSquare = squares.get(srcCord);
-		SquareContainer destSquare = squares.get(destCord);
+		Square srcSquare = squares.get(srcCord);
+		Square destSquare = squares.get(destCord);
 		srcSquare.movePiece(destSquare);
 	}
 	
@@ -42,7 +37,7 @@ public final class ChessBoard {
 	public String toString() {
 		StringBuffer stringBoard = new StringBuffer();
 		stringBoard.append("  ");
-		for(char colName = ChessBoard.FIRST_COL; colName <= ChessBoard.LAST_COL; colName++) {
+		for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
 			stringBoard.append("   " + colName + "  ");
 		}
 		stringBoard.append("\n");
@@ -53,9 +48,9 @@ public final class ChessBoard {
 			}
 			stringBoard.append("!\n");
 			stringBoard.append( row + " ");
-			for(char colName = ChessBoard.FIRST_COL; colName <= ChessBoard.LAST_COL; colName++) {
+			for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
 				Coordinates cord = Coordinates.at(colName, row);
-				SquareContainer square = squares.get(cord);
+				Square square = squares.get(cord);
 				String piece = square.toString();
 				stringBoard.append("!  " + piece + " ");
 			}
@@ -66,7 +61,7 @@ public final class ChessBoard {
 			stringBoard.append("!-----");
 		}
 		stringBoard.append("!\n  ");
-		for(char colName = ChessBoard.FIRST_COL; colName <= ChessBoard.LAST_COL; colName++) {
+		for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
 			stringBoard.append("   " + colName + "  ");
 		}
 		return stringBoard.toString();

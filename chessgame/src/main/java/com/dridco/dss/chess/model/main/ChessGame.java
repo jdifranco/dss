@@ -3,9 +3,9 @@ package com.dridco.dss.chess.model.main;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.dridco.dss.chess.model.Coordinates;
 import com.dridco.dss.chess.model.board.ChessBoard;
 import com.dridco.dss.chess.model.board.ChessBoardFactory;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 
 /**
  * 

@@ -1,7 +1,7 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.Coordinates;
-import com.dridco.dss.chess.model.square.SquareContainer;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.square.Square;
 import com.dridco.dss.chess.model.square.SquaresFactory;
 
 /**
@@ -28,26 +28,21 @@ public abstract class ChessPiece {
 		return this.captured;
 	}
 	
-	public boolean isMovedVertically(Coordinates srcCord, Coordinates destCord) {
-		return destCord.getCol() == srcCord.getCol() && destCord.getRow() != srcCord.getRow();
-		
-	}
-	
-	public boolean isMovedHorizontally(Coordinates srcCord, Coordinates destCord) {
-		return destCord.getCol() != srcCord.getCol() && destCord.getRow() == srcCord.getRow();
-	}
-	
-	public boolean isMovedDiagonally(Coordinates srcCord, Coordinates destCord) {
-		int colsDelta = destCord.getCol() - srcCord.getCol();
-		int rowsDelta = destCord.getRow() - srcCord.getRow();
-		return Math.abs(colsDelta) == Math.abs(rowsDelta);
-	}
-	
 	public abstract boolean isMoveValid(Coordinates srcCord, Coordinates destCord);
 
-	public void moveTo(SquareContainer srcSqCont, SquareContainer destSqCont) {
-		destSqCont.updateSquare(SquaresFactory.newOccupiedSquare(destSqCont.getCoordinates(), this));
-		srcSqCont.updateSquare(SquaresFactory.newEmptySquare(srcSqCont.getCoordinates()));
+	public void moveTo(Square srcSq, Square destSq) {
+				
+		if (!this.isMoveValid(srcSq.getCoordinates(),
+				destSq.getCoordinates())) {
+			throw new RuntimeException("Piece move is invalid.");
+		}
+		
+		if(destSq.hasSameColorPiece(this)) {
+			throw new RuntimeException("The dest Square is occupied with same color piece.");
+		}
+		
+		destSq.updateSquareState(SquaresFactory.newOccupiedSquare(destSq.getCoordinates(), this));
+		srcSq.updateSquareState(SquaresFactory.newEmptySquare(srcSq.getCoordinates()));
 		
 		if(!this.hasBeenMoved) {
 			this.hasBeenMoved = true;

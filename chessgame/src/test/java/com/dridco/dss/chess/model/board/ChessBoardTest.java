@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 
 /**
  * 
@@ -20,12 +20,7 @@ public class ChessBoardTest {
 	public void setUp () {
 		board = ChessBoardFactory.newBoard();
 	}
-	
-	@Test
-	public void testNewBoard_shouldHaveAllSquaresCreated() {
-		Assert.assertFalse(board.isEmpty());
-	}
-	
+		
 	@Test
 	public void testGetSquareAt_A5_shouldBeEmpty() {
 		Assert.assertFalse(board.getSquareAt(Coordinates.A5).isOccupied());

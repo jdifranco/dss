@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dridco.dss.chess.model.Coordinates;
+import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
 import com.dridco.dss.chess.model.piece.ChessPieceColors;
 import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
@@ -18,8 +18,8 @@ import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
 public class SquareTest {
 	
 	private ChessPiece testPawn = ChessPiecesFactory.newPawn(ChessPieceColors.WHITE);
-	private SquareContainer emptySquare;
-	private SquareContainer occupiedSquare;
+	private Square emptySquare;
+	private Square occupiedSquare;
 	
 	@Before
 	public void setUp() {

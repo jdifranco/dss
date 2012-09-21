@@ -1,4 +1,4 @@
-package com.dridco.dss.chess.model;
+package com.dridco.dss.chess.model.coordinate;
 
 /**
  * 
