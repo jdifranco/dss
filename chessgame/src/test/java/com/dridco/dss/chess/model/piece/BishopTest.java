@@ -24,17 +24,19 @@ public class BishopTest {
 	}
 
 	@Test
-	public void testCanMoveTo_HavingInvalid_DestLocation_shouldReturn_false() {
+	public void testIsMoveValid_HavingInvalid_DestLocation_shouldReturn_false() {
 		Assert.assertFalse(whiteBishopPiece.isMoveValid(Coordinates.C1, Coordinates.C4));
 		Assert.assertFalse(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.C4));
 	}
 	
 	@Test
-	public void testCanMoveTo_HavingValid_DestLocation_shouldReturn_true() {
+	public void testIsMoveValid_HavingValid_DestLocation_shouldReturn_true() {
 		Assert.assertTrue(whiteBishopPiece.isMoveValid(Coordinates.C1, Coordinates.A3));
 		Assert.assertTrue(whiteBishopPiece.isMoveValid(Coordinates.C1, Coordinates.H6));
 		Assert.assertTrue(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.A6));
 		Assert.assertTrue(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.H3));
 	}
+	
+	
 	
 }

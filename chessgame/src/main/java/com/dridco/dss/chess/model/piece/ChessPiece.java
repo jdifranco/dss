@@ -28,7 +28,7 @@ public abstract class ChessPiece {
 		return this.captured;
 	}
 	
-	public abstract boolean isMoveValid(Coordinates srcCord, Coordinates destCord);
+	protected abstract boolean isMoveValid(Coordinates srcCord, Coordinates destCord);
 
 	public void moveTo(Square srcSq, Square destSq) {
 				
