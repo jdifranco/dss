@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.model.piece.ChessPiece;
 import com.dridco.dss.chess.model.piece.ChessPieceColors;
 import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
 
@@ -17,36 +16,42 @@ import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
  */
 public class SquareTest {
 	
-	private ChessPiece testPawn = ChessPiecesFactory.newPawn(ChessPieceColors.WHITE);
 	private Square emptySquare;
-	private Square occupiedSquare;
+	private Square occupiedSquare1;
+	private Square occupiedSquare2;
 	
 	@Before
 	public void setUp() {
-		emptySquare = SquaresFactory.newEmptySquareContainer(Coordinates.H2);
-		occupiedSquare = SquaresFactory.newOccupiedSquareContainer(Coordinates.H1, testPawn);
+		emptySquare = SquaresFactory.newEmptySquare(Coordinates.H2);
+		occupiedSquare1 = SquaresFactory.newOccupiedSquare(Coordinates.H1, ChessPiecesFactory.newPawn(ChessPieceColors.WHITE));
+		occupiedSquare2 = SquaresFactory.newOccupiedSquare(Coordinates.H8, ChessPiecesFactory.newRook(ChessPieceColors.WHITE));
 	}
 			
 	@Test
-	public void testIsOccupied_shouldReturnFalse_whenSquareHasNothingOnIt() {
+	public void testIsOccupied_WhenSquareHasNothingOnIt_shouldReturnFalse() {
 		Assert.assertFalse(emptySquare.isOccupied());
 	}
 	
 	@Test
-	public void testIsOccupied_shouldReturnTrue_whenHavingPieceOnIt() {
-		Assert.assertTrue(occupiedSquare.isOccupied());
+	public void testIsOccupied_WhenHavingPieceOnIt_shouldReturnTrue() {
+		Assert.assertTrue(occupiedSquare1.isOccupied());
 	}
 	
 	@Test(expected=RuntimeException.class)
-	public void testMovePieceFrom_EmptySquare_shouldThrowException() {
-		emptySquare.movePiece(SquaresFactory.newEmptySquareContainer(Coordinates.H7));
+	public void testMovePiece_HavingEmptySquare_shouldThrowException() {
+		emptySquare.movePiece(SquaresFactory.newEmptySquare(Coordinates.H7));
 	}
 	
 	@Test
-	public void testMovePieceFrom_OccupiedSquare_shouldMovePiece_toDestSquare_assumingDestSquareIsEmpty() {
-		occupiedSquare.movePiece(emptySquare);
-		Assert.assertFalse(occupiedSquare.isOccupied());
+	public void testMovePiece_HavingOccupiedSquare_shouldMovePieceToDestSquare() {
+		occupiedSquare1.movePiece(emptySquare);
+		Assert.assertFalse(occupiedSquare1.isOccupied());
 		Assert.assertTrue(emptySquare.isOccupied());
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void testMovePiece_ToSameColorPieceSquare_shouldThrowException() {
+		occupiedSquare1.movePiece(occupiedSquare2);
 	}
 	
 }

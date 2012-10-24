@@ -1,7 +1,7 @@
 package com.dridco.dss.chess.model.square;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.model.piece.ChessPiece;
+import com.dridco.dss.chess.model.piece.ChessPieceColors;
 
 /**
  * 
@@ -18,9 +18,9 @@ public class EmptySquare extends SquareState {
 	public boolean isOccupied() {
 		return false;
 	}
-
+	
 	@Override
-	public boolean hasSameColorPiece(ChessPiece pieceToCompare) {
+	public boolean hasSameColorPiece(ChessPieceColors color) {
 		return false;
 	}
 	
@@ -33,5 +33,5 @@ public class EmptySquare extends SquareState {
 	public String toString() {
 		return "  ";
 	}
-
+	
 }

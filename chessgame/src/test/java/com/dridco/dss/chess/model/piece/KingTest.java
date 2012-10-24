@@ -24,13 +24,13 @@ public class KingTest {
 	}
 
 	@Test
-	public void testCanMoveTo_HavingInvalid_DestLocation_shouldReturn_false() {
+	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
 		Assert.assertFalse(whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.D3));
 		Assert.assertFalse(blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.A8));
 	}
 	
 	@Test
-	public void testCanMoveTo_HavingValid_DestLocation_shouldReturn_true() {
+	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
 		Assert.assertTrue(whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.F1));
 		Assert.assertTrue(whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.E2));
 		Assert.assertTrue(blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.D8));

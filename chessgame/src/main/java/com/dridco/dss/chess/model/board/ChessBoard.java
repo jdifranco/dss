@@ -4,6 +4,7 @@ import java.util.SortedMap;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.square.Square;
+import com.dridco.dss.chess.util.piece.ChessPieceUtil;
 
 /**
  * 
@@ -26,10 +27,36 @@ public final class ChessBoard {
 		return squares.get(cord);
 	}
 	
+	protected boolean arePiecesBetweenSquares(Coordinates srcCord, Coordinates destCord) {
+		if(ChessPieceUtil.isMovedVertically(srcCord, destCord)) {
+			int startRow;
+			int endRow;
+			
+			if(srcCord.getRow() < destCord.getRow()) {
+				startRow = srcCord.getRow() + 1;
+				endRow = destCord.getRow();
+			} else {
+				startRow = destCord.getRow() + 1;
+				endRow = srcCord.getRow();
+			}
+			
+			for(; startRow < endRow ; startRow++) {
+				if(squares.containsKey(Coordinates.at(destCord.getCol(), startRow))) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public void movePiece(Coordinates srcCord, Coordinates destCord) {
-		// TODO checkear el estado del tablero Jacke antes y despues de la jugada, etc.
 		Square srcSquare = squares.get(srcCord);
 		Square destSquare = squares.get(destCord);
+		
+		if(arePiecesBetweenSquares(srcCord, destCord)) {
+			throw new RuntimeException("Invalid move, there are pieces between.");
+		}
+		
 		srcSquare.movePiece(destSquare);
 	}
 	

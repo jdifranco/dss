@@ -24,13 +24,13 @@ public class QueenTest {
 	}
 
 	@Test
-	public void testCanMoveTo_HavingInvalid_DestLocation_shouldReturn_false() {
+	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
 		Assert.assertFalse(whiteQueenPiece.isMoveValid(Coordinates.D1, Coordinates.E4));
 		Assert.assertFalse(blackQueenPiece.isMoveValid(Coordinates.D8, Coordinates.F7));
 	}
 	
 	@Test
-	public void testCanMoveTo_HavingValid_DestLocation_shouldReturn_true() {
+	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
 		Assert.assertTrue(whiteQueenPiece.isMoveValid(Coordinates.D1, Coordinates.D6));
 		Assert.assertTrue(whiteQueenPiece.isMoveValid(Coordinates.D1, Coordinates.A4));
 		Assert.assertTrue(blackQueenPiece.isMoveValid(Coordinates.D8, Coordinates.G5));

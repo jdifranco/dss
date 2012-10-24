@@ -17,8 +17,7 @@ public class Rook extends ChessPiece {
 	@Override
 	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {
-		return ChessPieceUtil.isMovedHorizontally(srcCord, destCord) || 
-				ChessPieceUtil.isMovedVertically(srcCord, destCord);
+		return ChessPieceUtil.isMovedHorizontally(srcCord, destCord) || ChessPieceUtil.isMovedVertically(srcCord, destCord);
 	}
 	
 }

@@ -14,19 +14,19 @@ public class SquaresFactory {
 		// Dont want an instance of the factory.
 	}
 	
-	public static SquareState newEmptySquare(Coordinates cords) {
+	public static SquareState newEmptySquareState(Coordinates cords) {
 		return new EmptySquare(cords);
 	}
 	
-	public static SquareState newOccupiedSquare(Coordinates cords, ChessPiece piece) {
+	public static SquareState newOccupiedSquareState(Coordinates cords, ChessPiece piece) {
 		return new OccupiedSquare(cords, piece);
 	}
 	
-	public static Square newEmptySquareContainer(Coordinates cords) {
-		return new Square(newEmptySquare(cords));
+	public static Square newEmptySquare(Coordinates cords) {
+		return new Square(newEmptySquareState(cords));
 	}
 	
-	public static Square newOccupiedSquareContainer(Coordinates cords, ChessPiece piece) {
-		return new Square(newOccupiedSquare(cords, piece));
+	public static Square newOccupiedSquare(Coordinates cords, ChessPiece piece) {
+		return new Square(newOccupiedSquareState(cords, piece));
 	}
 }

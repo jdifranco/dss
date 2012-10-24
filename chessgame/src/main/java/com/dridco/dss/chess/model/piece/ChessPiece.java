@@ -28,25 +28,25 @@ public abstract class ChessPiece {
 		return this.captured;
 	}
 	
-	protected abstract boolean isMoveValid(Coordinates srcCord, Coordinates destCord);
-
 	public void moveTo(Square srcSq, Square destSq) {
-				
-		if (!this.isMoveValid(srcSq.getCoordinates(),
-				destSq.getCoordinates())) {
-			throw new RuntimeException("Piece move is invalid.");
-		}
-		
-		if(destSq.hasSameColorPiece(this)) {
+			
+		if(destSq.hasSameColorPiece(this.color)) {
 			throw new RuntimeException("The dest Square is occupied with same color piece.");
 		}
 		
-		destSq.updateSquareState(SquaresFactory.newOccupiedSquare(destSq.getCoordinates(), this));
-		srcSq.updateSquareState(SquaresFactory.newEmptySquare(srcSq.getCoordinates()));
+		if (!this.isMoveValid(srcSq.getCoordinates(),
+				destSq.getCoordinates())) {
+			throw new RuntimeException("Piece move is invalid.");
+		}		
+		
+		destSq.updateSquareState(SquaresFactory.newOccupiedSquareState(destSq.getCoordinates(), this));
+		srcSq.updateSquareState(SquaresFactory.newEmptySquareState(srcSq.getCoordinates()));
 		
 		if(!this.hasBeenMoved) {
 			this.hasBeenMoved = true;
 		}
 	}
+	
+	protected abstract boolean isMoveValid(Coordinates srcCord, Coordinates destCord);
 	
 }

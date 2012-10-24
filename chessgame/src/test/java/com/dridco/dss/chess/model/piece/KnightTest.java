@@ -24,13 +24,13 @@ public class KnightTest {
 	}
 
 	@Test
-	public void testCanMoveTo_HavingInvalid_DestLocation_shouldReturn_false() {
+	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
 		Assert.assertFalse(whiteKnightPiece.isMoveValid(Coordinates.B1, Coordinates.B4));
 		Assert.assertFalse(blackKnightPiece.isMoveValid(Coordinates.B8, Coordinates.B4));
 	}
 	
 	@Test
-	public void testCanMoveTo_HavingValid_DestLocation_shouldReturn_true() {
+	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
 		Assert.assertTrue(whiteKnightPiece.isMoveValid(Coordinates.B1, Coordinates.A3));
 		Assert.assertTrue(whiteKnightPiece.isMoveValid(Coordinates.B1, Coordinates.C3));
 		Assert.assertTrue(blackKnightPiece.isMoveValid(Coordinates.B8, Coordinates.A6));

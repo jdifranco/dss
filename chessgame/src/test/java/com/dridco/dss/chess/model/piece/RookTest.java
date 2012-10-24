@@ -24,13 +24,13 @@ public class RookTest {
 	}
 
 	@Test
-	public void testCanMoveTo_HavingInvalid_DestLocation_shouldReturn_false() {
+	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
 		Assert.assertFalse(whiteRookPiece.isMoveValid(Coordinates.A1, Coordinates.B2));
 		Assert.assertFalse(blackRookPiece.isMoveValid(Coordinates.H8, Coordinates.F6));
 	}
 	
 	@Test
-	public void testCanMoveTo_HavingValid_DestLocation_shouldReturn_true() {
+	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
 		Assert.assertTrue(whiteRookPiece.isMoveValid(Coordinates.A1, Coordinates.A3));
 		Assert.assertTrue(whiteRookPiece.isMoveValid(Coordinates.A1, Coordinates.C1));
 		Assert.assertTrue(blackRookPiece.isMoveValid(Coordinates.H8, Coordinates.A8));

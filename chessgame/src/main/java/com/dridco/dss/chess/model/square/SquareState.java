@@ -2,6 +2,7 @@ package com.dridco.dss.chess.model.square;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
+import com.dridco.dss.chess.model.piece.ChessPieceColors;
 
 /**
  * 
@@ -19,9 +20,9 @@ public abstract class SquareState {
 	}
 		
 	public abstract boolean isOccupied();
-	
-	public abstract boolean hasSameColorPiece(ChessPiece piece);
-	
+		
+	public abstract boolean hasSameColorPiece(ChessPieceColors color);
+		
 	public abstract void movePiece(Square srcSquare, Square destSquare);
 	
 	public abstract String toString();	

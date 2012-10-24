@@ -1,7 +1,7 @@
 package com.dridco.dss.chess.model.square;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.model.piece.ChessPiece;
+import com.dridco.dss.chess.model.piece.ChessPieceColors;
 
 
 /**
@@ -25,9 +25,9 @@ public class Square {
 	public boolean isOccupied() {
 		return this.state.isOccupied();
 	}
-	
-	public boolean hasSameColorPiece(ChessPiece piece) {
-		return this.state.hasSameColorPiece(piece);
+		
+	public boolean hasSameColorPiece(ChessPieceColors color) {
+		return this.state.hasSameColorPiece(color);
 	}
 	
 	public void updateSquareState(SquareState state) {

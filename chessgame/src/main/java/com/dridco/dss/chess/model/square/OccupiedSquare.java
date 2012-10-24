@@ -2,6 +2,7 @@ package com.dridco.dss.chess.model.square;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
+import com.dridco.dss.chess.model.piece.ChessPieceColors;
 
 /**
  * 
@@ -25,8 +26,8 @@ public class OccupiedSquare extends SquareState {
 	}
 
 	@Override
-	public boolean hasSameColorPiece(ChessPiece pieceToCompare) {
-		return this.piece.getColor() == pieceToCompare.getColor();
+	public boolean hasSameColorPiece(ChessPieceColors color) {
+		return this.piece.getColor() == color;
 	}
 	
 	@Override

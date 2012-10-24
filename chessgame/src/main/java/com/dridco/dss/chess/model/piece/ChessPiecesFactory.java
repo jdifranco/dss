@@ -1,6 +1,7 @@
 package com.dridco.dss.chess.model.piece;
 
 
+
 /**
  * Pieces factory.
  * 
