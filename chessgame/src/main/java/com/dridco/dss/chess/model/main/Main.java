@@ -26,7 +26,7 @@ public class Main {
 		
 		while(!game.isGameEndConditionReached()) {
 			// Print the board
-			System.out.println(game.getStringBoard());
+			System.out.println(game.getBoardAsString());
 			System.out.println("\n" + game.getCurrentPlayer().getColor().name() + " turn.. Enter move(src-dest): "); 
 			
 			// Read string

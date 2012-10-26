@@ -44,7 +44,7 @@ public class ChessGame {
 		return currentPlayer;
 	}
 	
-	public String getStringBoard() {
+	public String getBoardAsString() {
 		return this.board.toString();
 	}
 	

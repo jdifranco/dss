@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.square.SquaresFactory;
 
 /**
  * 
@@ -37,6 +38,21 @@ public class BishopTest {
 		Assert.assertTrue(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.H3));
 	}
 	
+	@Test
+	public void testMoveTo_HavingValidDestLocation_shouldReturnTrue() {
+		Assert.assertFalse(this.whiteBishopPiece.hasBeenMoved);
+		this.whiteBishopPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C1 ,
+				this.whiteBishopPiece), SquaresFactory.newEmptySquare(Coordinates.A3));
+		Assert.assertTrue(this.whiteBishopPiece.hasBeenMoved);
+		this.whiteBishopPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C3 ,
+				this.whiteBishopPiece), SquaresFactory.newEmptySquare(Coordinates.D4));
+		Assert.assertTrue(this.whiteBishopPiece.hasBeenMoved);
+	}
 	
+	@Test(expected=RuntimeException.class)
+	public void testMoveTo_HavingInvalidDestLocation_shoulThrowException() {
+		this.whiteBishopPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C1 ,
+				this.whiteBishopPiece), SquaresFactory.newEmptySquare(Coordinates.C2));
+	}
 	
 }

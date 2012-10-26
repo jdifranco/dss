@@ -9,7 +9,7 @@ import com.dridco.dss.chess.model.piece.ChessPieceColors;
  * @author jdifranco
  *
  */
-public class ChessPieceUtil {
+public final class ChessPieceUtil {
 	
 	public static boolean isMovedVertically(Coordinates srcCord, Coordinates destCord) {
 		return destCord.getCol() == srcCord.getCol() && destCord.getRow() != srcCord.getRow();

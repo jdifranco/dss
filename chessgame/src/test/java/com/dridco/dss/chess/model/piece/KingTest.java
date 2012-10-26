@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.square.SquaresFactory;
 
 /**
  * 
@@ -25,16 +26,33 @@ public class KingTest {
 
 	@Test
 	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
-		Assert.assertFalse(whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.D3));
-		Assert.assertFalse(blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.A8));
+		Assert.assertFalse(this.whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.D3));
+		Assert.assertFalse(this.blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.A8));
 	}
 	
 	@Test
 	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
-		Assert.assertTrue(whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.F1));
-		Assert.assertTrue(whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.E2));
-		Assert.assertTrue(blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.D8));
-		Assert.assertTrue(blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.E7));
+		Assert.assertTrue(this.whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.F1));
+		Assert.assertTrue(this.whiteKingPiece.isMoveValid(Coordinates.E1, Coordinates.E2));
+		Assert.assertTrue(this.blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.D8));
+		Assert.assertTrue(this.blackKingPiece.isMoveValid(Coordinates.E8, Coordinates.E7));
+	}
+	
+	@Test
+	public void testMoveTo_HavingValidDestLocation_shouldReturnTrue() {
+		Assert.assertFalse(this.whiteKingPiece.hasBeenMoved);
+		this.whiteKingPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.E1 ,
+				this.whiteKingPiece), SquaresFactory.newEmptySquare(Coordinates.E2));
+		Assert.assertTrue(this.whiteKingPiece.hasBeenMoved);
+		this.whiteKingPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.E2 ,
+				this.whiteKingPiece), SquaresFactory.newEmptySquare(Coordinates.F1));
+		Assert.assertTrue(this.whiteKingPiece.hasBeenMoved);
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void testMoveTo_HavingInvalidDestLocation_shoulThrowException() {
+		this.whiteKingPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C1 ,
+				this.whiteKingPiece), SquaresFactory.newEmptySquare(Coordinates.C3));
 	}
 	
 }

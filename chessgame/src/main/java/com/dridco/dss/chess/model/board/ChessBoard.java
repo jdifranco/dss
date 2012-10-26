@@ -14,6 +14,7 @@ import com.dridco.dss.chess.util.piece.ChessPieceUtil;
 public final class ChessBoard {
 	
 	public static char FIRST_COL = 'A';
+	public static char LAST_COL = 'H';
 	public static int SIZE = 8;
 	
 	private SortedMap<Coordinates, Square> squares;
@@ -41,13 +42,27 @@ public final class ChessBoard {
 			}
 			
 			for(; startRow < endRow ; startRow++) {
-				if(squares.containsKey(Coordinates.at(destCord.getCol(), startRow))) {
+				if(squares.get(Coordinates.at(destCord.getCol(), startRow)).isOccupied()) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
+	
+	/*private boolean arePiecesBetweenSourceAndDest(int srcRow, char srcCol, int destRow, char destCol, int rowIncrement, int colIncrement) {
+		
+		int currentRow = srcRow + rowIncrement;
+		char currentCol = (char) (srcCol + colIncrement);
+		
+		for( ; currentRow <= SIZE && currentCol <= LAST_COL ; currentRow += rowIncrement, currentCol += colIncrement) {
+			if(squares.containsKey(Coordinates.at(currentCol, currentRow))) {
+				return true;
+			}
+		}
+		
+		return false;
+	}*/
 	
 	public void movePiece(Coordinates srcCord, Coordinates destCord) {
 		Square srcSquare = squares.get(srcCord);

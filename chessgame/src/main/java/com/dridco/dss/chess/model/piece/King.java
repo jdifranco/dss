@@ -18,10 +18,13 @@ public class King extends ChessPiece {
 	public boolean isMoveValid(Coordinates srcCord,
 			Coordinates destCord) {
 		int squareMovesDelta = Math.abs(destCord.getCol() - srcCord.getCol()) + Math.abs(destCord.getRow() - srcCord.getRow());
-		boolean isMovePatternValid = ChessPieceUtil.isMovedHorizontally(srcCord, destCord) 
-				|| ChessPieceUtil.isMovedVertically(srcCord, destCord) 
-				|| ChessPieceUtil.isMovedDiagonally(srcCord, destCord);
-		return  isMovePatternValid && squareMovesDelta == 1;
+		
+		boolean isStraightMoveValid = 
+				(ChessPieceUtil.isMovedHorizontally(srcCord, destCord) || ChessPieceUtil.isMovedVertically(srcCord, destCord)) && squareMovesDelta == 1;
+		
+		boolean isDiagonalMoveValid = ChessPieceUtil.isMovedDiagonally(srcCord, destCord) && squareMovesDelta == 2;
+				
+		return  isStraightMoveValid || isDiagonalMoveValid;
 	}
 	
 }
