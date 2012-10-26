@@ -4,7 +4,7 @@ import java.util.SortedMap;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.square.Square;
-import com.dridco.dss.chess.util.piece.ChessPieceUtil;
+import com.dridco.dss.chess.util.board.ChessBoardUtil;
 
 /**
  * 
@@ -28,47 +28,11 @@ public final class ChessBoard {
 		return squares.get(cord);
 	}
 	
-	protected boolean arePiecesBetweenSquares(Coordinates srcCord, Coordinates destCord) {
-		if(ChessPieceUtil.isMovedVertically(srcCord, destCord)) {
-			int startRow;
-			int endRow;
-			
-			if(srcCord.getRow() < destCord.getRow()) {
-				startRow = srcCord.getRow() + 1;
-				endRow = destCord.getRow();
-			} else {
-				startRow = destCord.getRow() + 1;
-				endRow = srcCord.getRow();
-			}
-			
-			for(; startRow < endRow ; startRow++) {
-				if(squares.get(Coordinates.at(destCord.getCol(), startRow)).isOccupied()) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	/*private boolean arePiecesBetweenSourceAndDest(int srcRow, char srcCol, int destRow, char destCol, int rowIncrement, int colIncrement) {
-		
-		int currentRow = srcRow + rowIncrement;
-		char currentCol = (char) (srcCol + colIncrement);
-		
-		for( ; currentRow <= SIZE && currentCol <= LAST_COL ; currentRow += rowIncrement, currentCol += colIncrement) {
-			if(squares.containsKey(Coordinates.at(currentCol, currentRow))) {
-				return true;
-			}
-		}
-		
-		return false;
-	}*/
-	
 	public void movePiece(Coordinates srcCord, Coordinates destCord) {
 		Square srcSquare = squares.get(srcCord);
 		Square destSquare = squares.get(destCord);
 		
-		if(arePiecesBetweenSquares(srcCord, destCord)) {
+		if(ChessBoardUtil.arePiecesBetweenSquares(this,srcCord, destCord)) {
 			throw new RuntimeException("Invalid move, there are pieces between.");
 		}
 		

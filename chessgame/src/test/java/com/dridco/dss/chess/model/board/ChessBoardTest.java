@@ -43,9 +43,4 @@ public class ChessBoardTest {
 		Assert.assertTrue(board.getSquareAt(Coordinates.A4).isOccupied());
 	}
 	
-	@Test(expected=RuntimeException.class)
-	public void testMovePiece_HavingRookMovingThroughOccupiedSquare_shouldThrowException() {
-		board.movePiece(Coordinates.A1, Coordinates.A4);
-	}
-	
 }

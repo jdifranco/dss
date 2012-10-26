@@ -11,13 +11,28 @@ import com.dridco.dss.chess.model.piece.ChessPieceColors;
  */
 public final class ChessPieceUtil {
 	
+	public static boolean isNorthMoved(Coordinates srcCord, Coordinates destCord) {
+		return destCord.getCol() == srcCord.getCol() && destCord.getRow() > srcCord.getRow();
+	}
+	
+	public static boolean isSouthMoved(Coordinates srcCord, Coordinates destCord) {
+		return destCord.getCol() == srcCord.getCol() && destCord.getRow() < srcCord.getRow();
+	}
+	
 	public static boolean isMovedVertically(Coordinates srcCord, Coordinates destCord) {
-		return destCord.getCol() == srcCord.getCol() && destCord.getRow() != srcCord.getRow();
-		
+		return isNorthMoved(srcCord, destCord) || isSouthMoved(srcCord, destCord);
+	}
+	
+	public static boolean isWestMoved(Coordinates srcCord, Coordinates destCord) {
+		return destCord.getCol() < srcCord.getCol() && destCord.getRow() == srcCord.getRow();
+	}
+	
+	public static boolean isEastMoved(Coordinates srcCord, Coordinates destCord) {
+		return destCord.getCol() > srcCord.getCol() && destCord.getRow() == srcCord.getRow();
 	}
 
 	public static boolean isMovedHorizontally(Coordinates srcCord, Coordinates destCord) {
-		return destCord.getCol() != srcCord.getCol() && destCord.getRow() == srcCord.getRow();
+		return isEastMoved(srcCord, destCord) || isWestMoved(srcCord, destCord);
 	}
 	
 	public static boolean isMovedDiagonally(Coordinates srcCord, Coordinates destCord) {

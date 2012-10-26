@@ -36,12 +36,7 @@ public class SquareTest {
 	public void testIsOccupied_WhenHavingPieceOnIt_shouldReturnTrue() {
 		Assert.assertTrue(occupiedSquare1.isOccupied());
 	}
-	
-	@Test(expected=RuntimeException.class)
-	public void testMovePiece_HavingEmptySquare_shouldThrowException() {
-		emptySquare.movePiece(SquaresFactory.newEmptySquare(Coordinates.H7));
-	}
-	
+		
 	@Test
 	public void testMovePiece_HavingOccupiedSquare_shouldMovePieceToDestSquare() {
 		occupiedSquare1.movePiece(emptySquare);
