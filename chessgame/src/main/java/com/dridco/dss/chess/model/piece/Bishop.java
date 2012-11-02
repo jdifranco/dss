@@ -1,7 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.util.piece.ChessPieceUtil;
+import com.dridco.dss.chess.model.move.ChessMove;
 
 /**
  * 
@@ -15,9 +14,8 @@ public class Bishop extends ChessPiece {
 	}
 
 	@Override
-	public boolean isMoveValid(Coordinates srcCord,
-			Coordinates destCord) {	
-		return ChessPieceUtil.isMovedDiagonally(srcCord, destCord);
+	public boolean isMoveValid(ChessMove move) {	
+		return move.isDiagonal();
 	}
 	
 }

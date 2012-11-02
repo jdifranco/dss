@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.move.ChessMove;
+import com.dridco.dss.chess.model.move.ChessMovesFactory;
 
 /**
  * 
@@ -31,14 +33,10 @@ public class ChessBoardTest {
 		Assert.assertTrue(board.getSquareAt(Coordinates.A1).isOccupied());
 	}
 	
-	@Test(expected=RuntimeException.class)
-	public void testMovePiece_HavingEmptySquare_shouldThrowException() {
-		board.movePiece(Coordinates.A5, Coordinates.A6);
-	}
-	
 	@Test
 	public void testMovePiece_HavingOccupiedSquare_shouldMovePieceToDestSquare() {
-		board.movePiece(Coordinates.A2, Coordinates.A4);
+		ChessMove move = ChessMovesFactory.newChessMove(Coordinates.A2, Coordinates.A4, board.getSquareAt(Coordinates.A2).getPiece());
+		board.doMove(move);
 		Assert.assertFalse(board.getSquareAt(Coordinates.A2).isOccupied());
 		Assert.assertTrue(board.getSquareAt(Coordinates.A4).isOccupied());
 	}

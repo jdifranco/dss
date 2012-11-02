@@ -1,7 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.util.piece.ChessPieceUtil;
+import com.dridco.dss.chess.model.move.ChessMove;
 
 /**
  * 
@@ -15,13 +14,18 @@ public class Pawn extends ChessPiece {
 	}
 
 	@Override
-	public boolean isMoveValid(Coordinates srcCord,
-			Coordinates destCord) {
-		if(!ChessPieceUtil.isMovedHorizontally(srcCord, destCord) && ChessPieceUtil.isMovedVertically(srcCord, destCord)) {
-			int movesDelta = Math.abs(destCord.getRow() - srcCord.getRow());
-			return !ChessPieceUtil.isMovedBackward(this, srcCord, destCord) &&
-					(movesDelta == 1 || (!this.hasBeenMoved && movesDelta <= 2)); 
+	public boolean isMoveValid(ChessMove move) {
+		if(!move.isBackward()) {
+			int rowsDelta = Math.abs(move.getDest().getRow() - move.getSrc().getRow());
+			int colsDelta = Math.abs(move.getDest().getCol() - move.getSrc().getCol());
+			
+			if(move.isCapture()) {
+				return move.isDiagonal() && rowsDelta + colsDelta == 2 ;
+			} else if(move.isVertical()) {
+				return rowsDelta == 1 || (!this.hasBeenMoved && rowsDelta <= 2); 
+			}			
 		}
+		
 		return false;
 	}
 	

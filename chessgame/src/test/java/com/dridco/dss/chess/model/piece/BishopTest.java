@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.model.square.SquaresFactory;
+import com.dridco.dss.chess.model.move.ChessMovesFactory;
 
 /**
  * 
@@ -26,33 +26,16 @@ public class BishopTest {
 
 	@Test
 	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
-		Assert.assertFalse(whiteBishopPiece.isMoveValid(Coordinates.C1, Coordinates.C4));
-		Assert.assertFalse(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.C4));
+		Assert.assertFalse(whiteBishopPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.C1, Coordinates.C4, whiteBishopPiece)));
+		Assert.assertFalse(blackBishopPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.C8, Coordinates.C4, blackBishopPiece)));
 	}
 	
 	@Test
 	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
-		Assert.assertTrue(whiteBishopPiece.isMoveValid(Coordinates.C1, Coordinates.A3));
-		Assert.assertTrue(whiteBishopPiece.isMoveValid(Coordinates.C1, Coordinates.H6));
-		Assert.assertTrue(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.A6));
-		Assert.assertTrue(blackBishopPiece.isMoveValid(Coordinates.C8, Coordinates.H3));
-	}
-	
-	@Test
-	public void testMoveTo_HavingValidDestLocation_shouldReturnTrue() {
-		Assert.assertFalse(this.whiteBishopPiece.hasBeenMoved);
-		this.whiteBishopPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C1 ,
-				this.whiteBishopPiece), SquaresFactory.newEmptySquare(Coordinates.A3));
-		Assert.assertTrue(this.whiteBishopPiece.hasBeenMoved);
-		this.whiteBishopPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C3 ,
-				this.whiteBishopPiece), SquaresFactory.newEmptySquare(Coordinates.D4));
-		Assert.assertTrue(this.whiteBishopPiece.hasBeenMoved);
-	}
-	
-	@Test(expected=RuntimeException.class)
-	public void testMoveTo_HavingInvalidDestLocation_shoulThrowException() {
-		this.whiteBishopPiece.moveTo(SquaresFactory.newOccupiedSquare(Coordinates.C1 ,
-				this.whiteBishopPiece), SquaresFactory.newEmptySquare(Coordinates.C2));
+		Assert.assertTrue(whiteBishopPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.C1, Coordinates.A3, whiteBishopPiece)));
+		Assert.assertTrue(whiteBishopPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.C1, Coordinates.H6, whiteBishopPiece)));
+		Assert.assertTrue(blackBishopPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.C8, Coordinates.A6, blackBishopPiece)));
+		Assert.assertTrue(blackBishopPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.C8, Coordinates.H3, blackBishopPiece)));
 	}
 	
 }

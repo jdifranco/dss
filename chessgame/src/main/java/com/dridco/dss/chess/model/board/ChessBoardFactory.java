@@ -52,33 +52,33 @@ public class ChessBoardFactory {
 		
 		SortedMap<Coordinates, Square> squares = new TreeMap<Coordinates, Square>();
 		
-		squares.put(A1, SquaresFactory.newOccupiedSquare(A1, newRook(WHITE)));
-		squares.put(B1, SquaresFactory.newOccupiedSquare(B1, newKnight(WHITE)));
-		squares.put(C1, SquaresFactory.newOccupiedSquare(C1, newBishop(WHITE)));
-		squares.put(D1, SquaresFactory.newOccupiedSquare(D1, newQueen(WHITE)));
-		squares.put(E1, SquaresFactory.newOccupiedSquare(E1, newKing(WHITE)));
-		squares.put(F1, SquaresFactory.newOccupiedSquare(F1, newBishop(WHITE)));
-		squares.put(G1, SquaresFactory.newOccupiedSquare(G1, newKnight(WHITE)));
-		squares.put(H1, SquaresFactory.newOccupiedSquare(H1, newRook(WHITE)));
+		squares.put(A1, SquaresFactory.newOccupiedSquare(newRook(WHITE)));
+		squares.put(B1, SquaresFactory.newOccupiedSquare(newKnight(WHITE)));
+		squares.put(C1, SquaresFactory.newOccupiedSquare(newBishop(WHITE)));
+		squares.put(D1, SquaresFactory.newOccupiedSquare(newQueen(WHITE)));
+		squares.put(E1, SquaresFactory.newOccupiedSquare(newKing(WHITE)));
+		squares.put(F1, SquaresFactory.newOccupiedSquare(newBishop(WHITE)));
+		squares.put(G1, SquaresFactory.newOccupiedSquare(newKnight(WHITE)));
+		squares.put(H1, SquaresFactory.newOccupiedSquare(newRook(WHITE)));
 		
-		squares.put(A8, SquaresFactory.newOccupiedSquare(A8, newRook(BLACK)));
-		squares.put(B8, SquaresFactory.newOccupiedSquare(B8, newKnight(BLACK)));
-		squares.put(C8, SquaresFactory.newOccupiedSquare(C8, newBishop(BLACK)));
-		squares.put(D8, SquaresFactory.newOccupiedSquare(D8, newQueen(BLACK)));
-		squares.put(E8, SquaresFactory.newOccupiedSquare(E8, newKing(BLACK)));
-		squares.put(F8, SquaresFactory.newOccupiedSquare(F8, newBishop(BLACK)));
-		squares.put(G8, SquaresFactory.newOccupiedSquare(G8, newKnight(BLACK)));
-		squares.put(H8, SquaresFactory.newOccupiedSquare(H8, newRook(BLACK)));
+		squares.put(A8, SquaresFactory.newOccupiedSquare(newRook(BLACK)));
+		squares.put(B8, SquaresFactory.newOccupiedSquare(newKnight(BLACK)));
+		squares.put(C8, SquaresFactory.newOccupiedSquare(newBishop(BLACK)));
+		squares.put(D8, SquaresFactory.newOccupiedSquare(newQueen(BLACK)));
+		squares.put(E8, SquaresFactory.newOccupiedSquare(newKing(BLACK)));
+		squares.put(F8, SquaresFactory.newOccupiedSquare(newBishop(BLACK)));
+		squares.put(G8, SquaresFactory.newOccupiedSquare(newKnight(BLACK)));
+		squares.put(H8, SquaresFactory.newOccupiedSquare(newRook(BLACK)));
 		
 		for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
-			squares.put(at(colName, 2), SquaresFactory.newOccupiedSquare(at(colName, 2), newPawn(WHITE)));
-			squares.put(at(colName, 7), SquaresFactory.newOccupiedSquare(at(colName, 7), newPawn(BLACK)));
+			squares.put(at(colName, 2), SquaresFactory.newOccupiedSquare(newPawn(WHITE)));
+			squares.put(at(colName, 7), SquaresFactory.newOccupiedSquare(newPawn(BLACK)));
 		}
 		
 		for(char colName = ChessBoard.FIRST_COL, colIndex = 0; colIndex < ChessBoard.SIZE; colName++, colIndex++) {
 			for(int row = DEFAULT_FIRST_EMPTY_ROW; row <= DEFAULT_LAST_EMPTY_ROW; row++) {
 				Coordinates cord = at(colName, row);
-				squares.put(cord, SquaresFactory.newEmptySquare(cord));
+				squares.put(cord, SquaresFactory.newEmptySquare());
 			}
 		}
 		

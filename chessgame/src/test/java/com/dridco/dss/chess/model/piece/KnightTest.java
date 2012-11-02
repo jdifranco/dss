@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.move.ChessMovesFactory;
 
 /**
  * 
@@ -25,16 +26,16 @@ public class KnightTest {
 
 	@Test
 	public void testIsMoveValid_HavingInvalidDestLocation_shouldReturnFalse() {
-		Assert.assertFalse(whiteKnightPiece.isMoveValid(Coordinates.B1, Coordinates.B4));
-		Assert.assertFalse(blackKnightPiece.isMoveValid(Coordinates.B8, Coordinates.B4));
+		Assert.assertFalse(whiteKnightPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.B1, Coordinates.B4, whiteKnightPiece)));
+		Assert.assertFalse(blackKnightPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.B8, Coordinates.B4, blackKnightPiece)));
 	}
 	
 	@Test
 	public void testIsMoveValid_HavingValidDestLocation_shouldReturnTrue() {
-		Assert.assertTrue(whiteKnightPiece.isMoveValid(Coordinates.B1, Coordinates.A3));
-		Assert.assertTrue(whiteKnightPiece.isMoveValid(Coordinates.B1, Coordinates.C3));
-		Assert.assertTrue(blackKnightPiece.isMoveValid(Coordinates.B8, Coordinates.A6));
-		Assert.assertTrue(blackKnightPiece.isMoveValid(Coordinates.B8, Coordinates.C6));
+		Assert.assertTrue(whiteKnightPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.B1, Coordinates.A3, whiteKnightPiece)));
+		Assert.assertTrue(whiteKnightPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.B1, Coordinates.C3, whiteKnightPiece)));
+		Assert.assertTrue(blackKnightPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.B8, Coordinates.A6, blackKnightPiece)));
+		Assert.assertTrue(blackKnightPiece.isMoveValid(ChessMovesFactory.newChessMove(Coordinates.B8, Coordinates.C6, blackKnightPiece)));
 	}
 	
 }

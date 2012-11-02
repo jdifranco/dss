@@ -1,7 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
-import com.dridco.dss.chess.util.piece.ChessPieceUtil;
+import com.dridco.dss.chess.model.move.ChessMove;
 
 /**
  * 
@@ -15,14 +14,13 @@ public class King extends ChessPiece {
 	}
 
 	@Override
-	public boolean isMoveValid(Coordinates srcCord,
-			Coordinates destCord) {
-		int squareMovesDelta = Math.abs(destCord.getCol() - srcCord.getCol()) + Math.abs(destCord.getRow() - srcCord.getRow());
+	public boolean isMoveValid(ChessMove move) {
+		int squareMovesDelta = Math.abs(move.getDest().getCol() - move.getSrc().getCol()) + 
+				Math.abs(move.getDest().getRow() - move.getSrc().getRow());
 		
-		boolean isStraightMoveValid = 
-				(ChessPieceUtil.isMovedHorizontally(srcCord, destCord) || ChessPieceUtil.isMovedVertically(srcCord, destCord)) && squareMovesDelta == 1;
+		boolean isStraightMoveValid = (move.isHorizontal() || move.isVertical()) && squareMovesDelta == 1;
 		
-		boolean isDiagonalMoveValid = ChessPieceUtil.isMovedDiagonally(srcCord, destCord) && squareMovesDelta == 2;
+		boolean isDiagonalMoveValid = move.isDiagonal() && squareMovesDelta == 2;
 				
 		return  isStraightMoveValid || isDiagonalMoveValid;
 	}

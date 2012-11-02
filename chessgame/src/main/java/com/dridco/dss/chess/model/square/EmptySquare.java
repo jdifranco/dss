@@ -1,6 +1,6 @@
 package com.dridco.dss.chess.model.square;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.piece.ChessPiece;
 import com.dridco.dss.chess.model.piece.ChessPieceColors;
 
 /**
@@ -10,10 +10,15 @@ import com.dridco.dss.chess.model.piece.ChessPieceColors;
  */
 public class EmptySquare extends SquareState {
 
-	public EmptySquare(Coordinates cords) {
-		super(cords);
+	public EmptySquare() {
+		super();
 	}
 
+	@Override
+	public ChessPiece getPiece() {
+		throw new RuntimeException("This square is empty");
+	}
+	
 	@Override
 	public boolean isOccupied() {
 		return false;
@@ -24,11 +29,6 @@ public class EmptySquare extends SquareState {
 		return false;
 	}
 	
-	@Override
-	public void movePiece(Square srcSquare, Square destSquare) {
-		throw new RuntimeException("This square is empty");
-	}
-
 	@Override
 	public String toString() {
 		return "  ";

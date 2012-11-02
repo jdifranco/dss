@@ -1,6 +1,5 @@
 package com.dridco.dss.chess.model.square;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPiece;
 
 /**
@@ -14,19 +13,19 @@ public class SquaresFactory {
 		// Dont want an instance of the factory.
 	}
 	
-	public static SquareState newEmptySquareState(Coordinates cords) {
-		return new EmptySquare(cords);
+	public static SquareState newEmptySquareState() {
+		return new EmptySquare();
 	}
 	
-	public static SquareState newOccupiedSquareState(Coordinates cords, ChessPiece piece) {
-		return new OccupiedSquare(cords, piece);
+	public static SquareState newOccupiedSquareState(ChessPiece piece) {
+		return new OccupiedSquare(piece);
 	}
 	
-	public static Square newEmptySquare(Coordinates cords) {
-		return new Square(newEmptySquareState(cords));
+	public static Square newEmptySquare() {
+		return new Square(newEmptySquareState());
 	}
 	
-	public static Square newOccupiedSquare(Coordinates cords, ChessPiece piece) {
-		return new Square(newOccupiedSquareState(cords, piece));
+	public static Square newOccupiedSquare(ChessPiece piece) {
+		return new Square(newOccupiedSquareState(piece));
 	}
 }

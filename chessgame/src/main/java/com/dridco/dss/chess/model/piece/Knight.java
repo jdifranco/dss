@@ -1,6 +1,6 @@
 package com.dridco.dss.chess.model.piece;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.move.ChessMove;
 
 /**
  * 
@@ -16,10 +16,9 @@ public class Knight extends ChessPiece {
 	}
 
 	@Override
-	public boolean isMoveValid(Coordinates srcCord,
-			Coordinates destCord) {
-		int colsDelta = Math.abs(destCord.getCol() - srcCord.getCol());
-		int rowsDelta = Math.abs(destCord.getRow() - srcCord.getRow());
+	public boolean isMoveValid(ChessMove move) {
+		int colsDelta = Math.abs(move.getDest().getCol() - move.getSrc().getCol());
+		int rowsDelta = Math.abs(move.getDest().getRow() - move.getSrc().getRow());
 		
 		return colsDelta > 0 && rowsDelta > 0 && colsDelta + rowsDelta == VALID_SQUARES_DELTA;
 	}

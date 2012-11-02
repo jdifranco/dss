@@ -35,11 +35,11 @@ public enum Coordinates {
 	
 	public static Coordinates at(char x, Integer y) {
 		String strCord = String.valueOf(x) + y.toString();
-		Coordinates cord = Coordinates.valueOf(strCord.toUpperCase());
-		if (cord != null) {
-			return cord;
+		try {
+			return Coordinates.valueOf(strCord.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			throw new RuntimeException("Inexistent Coordinate");
 		}
-		throw new RuntimeException("Inexistent Coordinate");
 	}
 
 	public String toString() {

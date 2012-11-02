@@ -3,8 +3,9 @@ package com.dridco.dss.chess.model.board;
 import java.util.SortedMap;
 
 import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.move.ChessMove;
 import com.dridco.dss.chess.model.square.Square;
-import com.dridco.dss.chess.util.board.ChessBoardUtil;
+import com.dridco.dss.chess.model.square.SquaresFactory;
 
 /**
  * 
@@ -28,15 +29,20 @@ public final class ChessBoard {
 		return squares.get(cord);
 	}
 	
-	public void movePiece(Coordinates srcCord, Coordinates destCord) {
-		Square srcSquare = squares.get(srcCord);
-		Square destSquare = squares.get(destCord);
+	public void doMove(ChessMove move) {
 		
-		if(ChessBoardUtil.arePiecesBetweenSquares(this,srcCord, destCord)) {
+		if(move.arePiecesBetween(this)) {
 			throw new RuntimeException("Invalid move, there are pieces between.");
 		}
 		
-		srcSquare.movePiece(destSquare);
+		if(!move.isValid()) {
+			throw new RuntimeException("Piece move is invalid.");
+		}
+		
+		Square srcSquare = squares.get(move.getSrc());
+		Square destSquare = squares.get(move.getDest());
+		destSquare.updateSquareState(SquaresFactory.newOccupiedSquareState(srcSquare.getPiece()));
+		srcSquare.updateSquareState(SquaresFactory.newEmptySquareState());
 	}
 	
 	@Override

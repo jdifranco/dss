@@ -5,7 +5,6 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
 import com.dridco.dss.chess.model.piece.ChessPieceColors;
 import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
 
@@ -17,16 +16,24 @@ import com.dridco.dss.chess.model.piece.ChessPiecesFactory;
 public class SquareTest {
 	
 	private Square emptySquare;
-	private Square occupiedSquare1;
-	private Square occupiedSquare2;
+	private Square occupiedSquare;
 	
 	@Before
 	public void setUp() {
-		emptySquare = SquaresFactory.newEmptySquare(Coordinates.H2);
-		occupiedSquare1 = SquaresFactory.newOccupiedSquare(Coordinates.H1, ChessPiecesFactory.newPawn(ChessPieceColors.WHITE));
-		occupiedSquare2 = SquaresFactory.newOccupiedSquare(Coordinates.H8, ChessPiecesFactory.newRook(ChessPieceColors.WHITE));
+		emptySquare = SquaresFactory.newEmptySquare();
+		occupiedSquare = SquaresFactory.newOccupiedSquare(ChessPiecesFactory.newPawn(ChessPieceColors.WHITE));
 	}
-			
+	
+	@Test(expected=RuntimeException.class)
+	public void testGetPiece_WhenSquareHasNothingOnIt_shouldThrowException() {
+		emptySquare.getPiece();
+	}
+	
+	@Test
+	public void testGetPiece_WhenHavingPieceOnIt_shouldReturnThePiece() {
+		Assert.assertNotNull(occupiedSquare.getPiece());
+	}
+	
 	@Test
 	public void testIsOccupied_WhenSquareHasNothingOnIt_shouldReturnFalse() {
 		Assert.assertFalse(emptySquare.isOccupied());
@@ -34,19 +41,21 @@ public class SquareTest {
 	
 	@Test
 	public void testIsOccupied_WhenHavingPieceOnIt_shouldReturnTrue() {
-		Assert.assertTrue(occupiedSquare1.isOccupied());
-	}
-		
-	@Test
-	public void testMovePiece_HavingOccupiedSquare_shouldMovePieceToDestSquare() {
-		occupiedSquare1.movePiece(emptySquare);
-		Assert.assertFalse(occupiedSquare1.isOccupied());
-		Assert.assertTrue(emptySquare.isOccupied());
+		Assert.assertTrue(occupiedSquare.isOccupied());
 	}
 	
-	@Test(expected=RuntimeException.class)
-	public void testMovePiece_ToSameColorPieceSquare_shouldThrowException() {
-		occupiedSquare1.movePiece(occupiedSquare2);
+	@Test
+	public void testHasSameColorPiece() {
+		Assert.assertFalse(emptySquare.hasSameColorPiece(ChessPieceColors.WHITE));
+		Assert.assertFalse(emptySquare.hasSameColorPiece(ChessPieceColors.BLACK));
+		Assert.assertFalse(occupiedSquare.hasSameColorPiece(ChessPieceColors.BLACK));
+		Assert.assertTrue(occupiedSquare.hasSameColorPiece(ChessPieceColors.WHITE));
+	}
+	
+	@Test
+	public void testUupdateSquareState_HavingOccupiedSquareToEmpty_shouldCleanSquare() {
+		occupiedSquare.updateSquareState(SquaresFactory.newEmptySquareState());
+		Assert.assertFalse(occupiedSquare.isOccupied());
 	}
 	
 }

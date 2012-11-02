@@ -1,6 +1,6 @@
 package com.dridco.dss.chess.model.square;
 
-import com.dridco.dss.chess.model.coordinate.Coordinates;
+import com.dridco.dss.chess.model.piece.ChessPiece;
 import com.dridco.dss.chess.model.piece.ChessPieceColors;
 
 
@@ -18,10 +18,10 @@ public class Square {
 		this.state = square;
 	}
 	
-	public Coordinates getCoordinates() {
-		return this.state.coordinates;
+	public ChessPiece getPiece() {
+		return this.state.getPiece();
 	}
-	
+		
 	public boolean isOccupied() {
 		return this.state.isOccupied();
 	}
@@ -33,11 +33,7 @@ public class Square {
 	public void updateSquareState(SquareState state) {
 		this.state = state;
 	}
-	
-	public void movePiece(Square destSquare){
-		state.movePiece(this, destSquare);
-	}
-	
+		
 	@Override
 	public String toString() {
 		return state.toString();
