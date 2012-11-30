@@ -41,7 +41,11 @@ public enum Coordinates {
 			throw new RuntimeException("Inexistent Coordinate");
 		}
 	}
-
+	
+	public static boolean isValid(char x, Integer y) {		
+		return x >= A1.getCol() && x <= H8.getCol() && y >= A1.getRow() && y <= H8.getRow();
+	}
+	
 	public String toString() {
 		return col + ":" + row;
 	}

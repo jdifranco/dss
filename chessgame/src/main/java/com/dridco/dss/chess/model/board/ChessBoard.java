@@ -31,11 +31,7 @@ public final class ChessBoard {
 	
 	public void doMove(ChessMove move) {
 		
-		if(move.arePiecesBetween(this)) {
-			throw new RuntimeException("Invalid move, there are pieces between.");
-		}
-		
-		if(!move.isValid()) {
+		if(!move.isValid(this)) {
 			throw new RuntimeException("Piece move is invalid.");
 		}
 		

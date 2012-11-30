@@ -153,7 +153,7 @@ public class ChessMoveTest {
 	
 	@Test
 	public void testArePiecesBetweenSquares_HavingRookMovingHorizontallyThroughOccupiedSquare() {
-		ChessMove whiteRookMove = ChessMovesFactory.newChessMove(Coordinates.A1, Coordinates.B1, this.whiteRook);
+		ChessMove whiteRookMove = ChessMovesFactory.newChessMove(Coordinates.A1, Coordinates.C1, this.whiteRook);
 		Assert.assertTrue(whiteRookMove.arePiecesBetween(board));
 		ChessMove blackRookMove = ChessMovesFactory.newChessMove(Coordinates.H8, Coordinates.B8, this.blackRook);
 		Assert.assertTrue(blackRookMove.arePiecesBetween(board));
@@ -167,7 +167,6 @@ public class ChessMoveTest {
 		Assert.assertFalse(whiteRookMove1.arePiecesBetween(board));
 		ChessMove whiteRookMove2 = ChessMovesFactory.newChessMove(Coordinates.A1, Coordinates.A4, this.whiteRook);
 		Assert.assertFalse(whiteRookMove2.arePiecesBetween(board));
-		
 	}
 
 }

@@ -119,33 +119,25 @@ public class ChessMove {
 		return arePiecesBetweenSquares;
 	}
 
-	private boolean arePiecesBetweenSourceAndDest(ChessBoard board,
-			char srcCol, char destCol, int srcRow, int destRow,
-			int rowIncrement, int colIncrement) {
-
+	private boolean arePiecesBetweenSourceAndDest(ChessBoard board, 
+			char srcCol, char destCol, int srcRow, int destRow, int rowIncrement, int colIncrement) {
+		
 		int currentRow = srcRow + rowIncrement;
 		char currentCol = (char) (srcCol + colIncrement);
-
-		while ((currentRow < destRow || rowIncrement == 0) && (currentCol < destCol || colIncrement == 0)) {
-			if (board.getSquareAt(Coordinates.at(currentCol, currentRow))
-					.isOccupied()) {
+		
+		while (Coordinates.isValid(currentCol, currentRow) && !(currentRow == destRow && currentCol == destCol)) {
+			if (board.getSquareAt(Coordinates.at(currentCol, currentRow)).isOccupied()) {
 				return true;
 			}
 			currentRow += rowIncrement;
 			currentCol += colIncrement;
 		}
-		
-		
-//		do {
-//			
-//			
-//		} while ((currentRow < destRow || rowIncrement == 0) && (currentCol < destCol || colIncrement == 0));
-
 		return false;
 	}
+		
 	
-	public boolean isValid() {
-		return this.piece.isMoveValid(this);
+	public boolean isValid(ChessBoard board) {
+		return this.piece.isMoveValid(this) && !arePiecesBetween(board);
 	}
 
 }
