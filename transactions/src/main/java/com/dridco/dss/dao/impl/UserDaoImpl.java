@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 		return this.manager.createQuery("from User", User.class).getResultList();
 	}
 	
-	@Transactional(readOnly=false)
+	@Transactional
 	@Override
 	public void save(User user) {
 		this.manager.persist(user);
