@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema name="booksSchema" version="1.5">
+
+	<types>
+		<fieldType name="string" class="solr.TextField">
+			<analyzer>
+				<tokenizer class="solr.KeywordTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.ASCIIFoldingFilterFactory" />
+			</analyzer>
+		</fieldType>
+
+		<fieldType name="text" class="solr.TextField">
+			<analyzer>
+				<tokenizer class="solr.StandardTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.ASCIIFoldingFilterFactory" />
+			</analyzer>
+		</fieldType>
+
+		<fieldType name="long" class="solr.LongField" />
+		<fieldType name="float" class="solr.FloatField" />
+		<fieldType name="boolean" class="solr.BoolField" />
+		
+	</types>
+
+	<fields>
+		<field name="isbn" type="string" indexed="true" stored="true" required="true" />
+		<field name="language" type="string" indexed="true" stored="true" required="true" />
+		<dynamicField name="dimensions_*" type="float"  indexed="true" stored="true"/>
+		<field name="weight" type="float" indexed="true" stored="true" required="true" />
+		<field name="price" type="float" indexed="true" stored="true" required="true" />
+		<field name="rating" type="long" indexed="true" stored="true" required="true" />
+		<field name="category" type="string" indexed="true" stored="true" required="true" multivalued="true" />
+		<field name="brief" type="string" indexed="true" stored="true" required="true" compressed="true" />
+		<field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
+	</fields>
+	
+	<uniqueKey>isbn</uniqueKey>
+	
+	<solrQueryParser defaultOperator="AND"/>
+	
+</schema>
